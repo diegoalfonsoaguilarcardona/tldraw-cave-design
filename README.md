@@ -20,6 +20,40 @@
   <a href="https://tldraw.dev/quick-start">Docs</a> · <a href="https://tldraw.dev/examples">Examples</a> · <a href="https://tldraw.dev/starter-kits/overview">Starter kits</a>
 </p>
 
+## Cave wall theme (this fork)
+
+This fork adds a **cave wall (cueva)** theme example — a paleolithic cave-painting aesthetic for the tldraw editor with earth-tone pigments, a torch-lit stone canvas, and hand-painted typography.
+
+### What's different from the original
+
+| Area              | Original tldraw              | This fork                                                                         |
+| ----------------- | ---------------------------- | --------------------------------------------------------------------------------- |
+| Canvas background | Flat white/dark color        | Rock-gradient cave wall with fractal-noise grain and torch vignette               |
+| Shape colors      | Blues, greens, purples, reds | Earth pigments only: Charcoal, Stone, Bone, Ochre, Umber, Ember, Clay, Mud, Blood |
+| Fonts             | Draw, Sans, Serif, Mono      | + Painted (Rubik Dirt), Scrawl (Finger Paint), Stamp (Rye)                        |
+| UI chrome         | Light/dark neutral panels    | Dark stone panels, bone text, ochre selection highlight                           |
+| New file          | —                            | `apps/examples/src/examples/ui/cave-wall-theme/`                                  |
+
+All changes are **additive and scoped to one example** — no existing code is modified.
+
+### Running the cave wall example
+
+Requires Node.js ≥20. From the repo root:
+
+```bash
+# First-time setup
+npm i -g corepack && corepack enable && yarn
+
+# Start the dev server
+yarn dev
+```
+
+Open [http://localhost:5420/cave-wall-theme](http://localhost:5420/cave-wall-theme) — or start the server and select **Cave wall theme** from the UI section in the sidebar.
+
+**Selecting fonts:** choose the text tool (`T` in the toolbar), then pick a font in the style panel before typing. The last-used style is remembered for new shapes.
+
+---
+
 ## Feature highlights
 
 tldraw provides a feature-complete infinite canvas engine designed to be the foundation for any canvas app. Create custom shapes, tools, bindings and UI components for a custom experience. Use the default whiteboarding tool set or use the library's primitives to build entirely new shapes and interactions.
