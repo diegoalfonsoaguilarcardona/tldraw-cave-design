@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Stamp & chip specimen</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:220px;padding:20px 30px;position:relative;display:flex;flex-direction:column;gap:14px;justify-content:center;}
+  .cv-wall{position:absolute;inset:0;}
+  .row{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .meta{position:relative;z-index:1;font-family:var(--font-stamp);font-size:12px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;}
+  .chip{display:inline-block;background:rgba(239,227,199,.88);border:2px solid var(--charcoal);padding:7px 14px;font-family:var(--font-stamp);font-size:13px;color:var(--charcoal);letter-spacing:.06em;text-transform:uppercase;filter:url(#rough);}
+  .chip.dark{background:var(--charcoal);color:var(--bone);border-color:var(--bone);}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="meta">Special Elite · Stamps & chips</div>
+  <div class="row">
+    <span class="chip">Mix with: spit</span>
+    <span class="chip">Or: animal fat</span>
+    <span class="chip">Apply: finger</span>
+    <span class="chip dark">Moon · Full</span>
+    <span class="chip dark">Hunt · Tally III</span>
+  </div>
+  <div class="row">
+    <span class="chip">End of hunt</span>
+    <span class="chip">Fire · low</span>
+    <span class="chip">Bone · ground</span>
+  </div>
+</div>
+</body></html>

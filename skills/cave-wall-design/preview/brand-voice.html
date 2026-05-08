@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Voice & tone</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;padding:26px 30px;display:flex;flex-direction:column;gap:14px;color:var(--bone);}
+  .label{font-family:var(--font-stamp);font-size:11px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cell{padding:10px 14px;border:1px solid rgba(239,227,199,.25);}
+  .cell.bad{border-color:rgba(139,47,26,.6);}
+  .cell.good{border-color:rgba(200,132,30,.6);}
+  .badge{display:inline-block;font-family:var(--font-stamp);font-size:10px;letter-spacing:.1em;padding:2px 8px;margin-bottom:6px;text-transform:uppercase;}
+  .bad .badge{background:var(--ochre-red);color:var(--bone);}
+  .good .badge{background:var(--ochre-yellow);color:var(--charcoal);}
+  .txt{font-family:var(--font-scrawl);font-size:22px;line-height:1.15;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<div class="wrap">
+  <div class="label">Voice — caveman terse</div>
+  <div class="row">
+    <div class="cell bad"><span class="badge">Avoid</span><div class="txt">Our pigments are derived from natural minerals.</div></div>
+    <div class="cell good"><span class="badge">Use</span><div class="txt">iron in the clay. crush. spit. smear.</div></div>
+  </div>
+  <div class="row">
+    <div class="cell bad"><span class="badge">Avoid</span><div class="txt">Let's dive into the hunt!</div></div>
+    <div class="cell good"><span class="badge">Use</span><div class="txt">fire dies. story stays on wall.</div></div>
+  </div>
+  <div class="row">
+    <div class="cell bad"><span class="badge">Avoid</span><div class="txt">Please submit your questions below.</div></div>
+    <div class="cell good"><span class="badge">Use</span><div class="txt">grunt once for yes, twice for no.</div></div>
+  </div>
+</div>
+</body></html>

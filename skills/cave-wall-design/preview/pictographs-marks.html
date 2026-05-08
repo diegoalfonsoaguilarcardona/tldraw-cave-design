@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Pictograph library — marks</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;padding:24px 30px;}
+  .row{display:flex;gap:16px;align-items:center;justify-content:space-around;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .name{font-family:var(--font-stamp);font-size:12px;letter-spacing:.08em;color:var(--bone);text-transform:uppercase;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  <symbol id="pg-hand" viewBox="0 0 160 200"><path d="M45,185 C40,160 38,130 42,110 C32,100 28,85 32,72 C36,62 46,62 52,72 L58,95 L60,50 C62,38 76,36 80,48 L82,95 L90,35 C92,22 106,22 108,36 L108,95 L116,55 C118,42 132,44 132,58 L128,110 C132,130 130,160 124,185 Z" fill="currentColor" filter="url(#rough)"/></symbol>
+  <symbol id="pg-spiral" viewBox="0 0 100 100"><path d="M50,50 m0,0 a4,4 0 1,1 8,0 a8,8 0 1,1 -16,0 a14,14 0 1,1 28,0 a20,20 0 1,1 -40,0 a26,26 0 1,1 48,-6" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#rough)"/></symbol>
+  <symbol id="pg-dots" viewBox="0 0 100 100"><circle cx="20" cy="20" r="6" fill="currentColor"/><circle cx="50" cy="25" r="5" fill="currentColor"/><circle cx="78" cy="18" r="7" fill="currentColor"/><circle cx="30" cy="50" r="5" fill="currentColor"/><circle cx="62" cy="55" r="6" fill="currentColor"/><circle cx="22" cy="80" r="5" fill="currentColor"/><circle cx="55" cy="82" r="6" fill="currentColor"/><circle cx="82" cy="75" r="5" fill="currentColor"/></symbol>
+  <symbol id="pg-paw" viewBox="0 0 100 100"><ellipse cx="50" cy="65" rx="22" ry="18" fill="currentColor"/><ellipse cx="25" cy="40" rx="9" ry="11" fill="currentColor"/><ellipse cx="42" cy="22" rx="9" ry="11" fill="currentColor"/><ellipse cx="62" cy="22" rx="9" ry="11" fill="currentColor"/><ellipse cx="78" cy="40" rx="9" ry="11" fill="currentColor"/></symbol>
+  <symbol id="pg-spear" viewBox="0 0 120 30"><path d="M2,15 L95,15 M85,5 L110,15 L85,25 M15,9 L15,21 M35,10 L35,20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="pg-sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="18" fill="none" stroke="currentColor" stroke-width="4"/><g stroke="currentColor" stroke-width="4" stroke-linecap="round"><line x1="50" y1="12" x2="50" y2="24"/><line x1="50" y1="76" x2="50" y2="88"/><line x1="12" y1="50" x2="24" y2="50"/><line x1="76" y1="50" x2="88" y2="50"/><line x1="22" y1="22" x2="30" y2="30"/><line x1="70" y1="70" x2="78" y2="78"/><line x1="22" y1="78" x2="30" y2="70"/><line x1="70" y1="30" x2="78" y2="22"/></g></symbol>
+  <symbol id="pg-person" viewBox="0 0 60 120"><circle cx="30" cy="15" r="10" fill="currentColor"/><path d="M30,25 L30,70 M30,35 L10,55 M30,35 L50,55 M30,70 L15,110 M30,70 L45,110" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
+</defs></svg>
+<div class="wrap">
+  <div class="row">
+    <div class="cell"><svg width="70" height="88" style="color:var(--ochre-red)"><use href="#pg-hand"/></svg><div class="name">Hand</div></div>
+    <div class="cell"><svg width="70" height="70" style="color:var(--bone)"><use href="#pg-spiral"/></svg><div class="name">Spiral</div></div>
+    <div class="cell"><svg width="70" height="70" style="color:var(--bone)"><use href="#pg-dots"/></svg><div class="name">Dots</div></div>
+    <div class="cell"><svg width="70" height="70" style="color:var(--bone)"><use href="#pg-paw"/></svg><div class="name">Paw</div></div>
+    <div class="cell"><svg width="90" height="22" style="color:var(--bone)"><use href="#pg-spear"/></svg><div class="name">Spear</div></div>
+    <div class="cell"><svg width="70" height="70" style="color:var(--ochre-yellow)"><use href="#pg-sun"/></svg><div class="name">Sun</div></div>
+    <div class="cell"><svg width="40" height="80" style="color:var(--bone)"><use href="#pg-person"/></svg><div class="name">Person</div></div>
+  </div>
+</div>
+</body></html>

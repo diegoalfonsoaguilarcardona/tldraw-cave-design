@@ -1,0 +1,53 @@
+/* Cave Wall Design System — Cueva theme
+   Dark cave: smoky rock, torchlight, organic hand-painted textures.
+   This is the default theme (same values as :root in colors_and_type.css).
+   Load explicitly when you need to override a parent luminoso context. */
+
+:root[data-theme="cueva"] {
+  /* Rock palette */
+  --stone-0: #2a1d12;
+  --stone-1: #3b2a1b;
+  --stone-2: #6b4a2e;
+  --stone-3: #8a6a44;
+  --stone-4: #b08a5c;
+  --stone-5: #d4b27c;
+
+  /* Pigments */
+  --ochre-red:       #8b2f1a;
+  --ochre-deep:      #5d1d10;
+  --ochre-yellow:    #c8841e;
+  --ochre-yellow-lt: #e1a94a;
+  --charcoal:        #1a120a;
+  --bone:            #efe3c7;
+  --bone-dim:        #d9cca7;
+  --ember:           #ff7a2b;
+
+  /* Semantic */
+  --bg:     var(--stone-1);
+  --fg:     var(--bone);
+  --fg-dim: var(--bone-dim);
+  --accent:   var(--ochre-red);
+  --accent-2: var(--ochre-yellow);
+  --ink:      var(--charcoal);
+
+  /* Panel */
+  --parchment-light: #f3e2b8;
+  --parchment-mid:   #d9bf89;
+  --parchment-dark:  #a98651;
+  --parchment-fg:    var(--charcoal);
+
+  /* Shadows */
+  --shadow-warm: rgba(90,50,10,.35);
+  --border-warm: rgba(60,30,10,.5);
+  --shadow-panel: inset 0 0 40px var(--shadow-warm), 0 6px 18px rgba(0,0,0,.5);
+
+  /* Atmosphere */
+  --wall-glow-color:    rgba(255,160,60,.18);
+  --wall-vignette:      rgba(0,0,0,.55);
+  --wall-vignette-deep: rgba(0,0,0,.85);
+  --wall-ember-a:       rgba(255,120,40,.18);
+  --wall-ember-b:       rgba(255,120,40,.14);
+
+  /* Chip */
+  --chip-bg: rgba(239,227,199,.88);
+}

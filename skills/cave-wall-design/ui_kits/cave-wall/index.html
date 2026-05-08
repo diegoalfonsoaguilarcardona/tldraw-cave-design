@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cueva">
+<head>
+<meta charset="UTF-8"/>
+<title>Cave Wall UI kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css"/>
+<link rel="stylesheet" href="../../themes/cueva.css"/>
+<link rel="stylesheet" href="../../themes/luminoso.css"/>
+<link rel="stylesheet" href="../../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:#000;font-family:var(--font-scrawl);color:var(--bone);}
+  #root{width:1200px;height:800px;margin:0 auto;box-shadow:0 0 60px rgba(0,0,0,.8);}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+
+<!-- Shared pictograph defs (inline — required by Pictograph.jsx) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <filter id="roughHeavy"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter>
+    <symbol id="pg-bison" viewBox="0 0 200 120"><path d="M20,80 C30,50 55,40 80,42 C85,30 100,28 110,35 C125,30 145,35 160,50 C175,55 180,70 175,85 C170,95 150,95 145,88 L140,100 L135,88 L100,90 L95,100 L90,88 L60,90 L55,102 L50,88 C40,90 25,88 20,80 Z" fill="currentColor" filter="url(#rough)"/><circle cx="155" cy="62" r="3" fill="rgba(0,0,0,.6)"/><path d="M160,48 Q165,40 172,45 M155,45 Q158,38 165,40" stroke="currentColor" stroke-width="3" fill="none"/></symbol>
+    <symbol id="pg-mammoth" viewBox="0 0 220 150"><path d="M30,95 C40,45 80,30 115,35 C155,30 185,50 195,80 C200,95 195,110 180,108 L175,125 L168,108 L155,108 L152,125 L145,108 L85,108 L82,125 L75,108 L58,108 L55,125 L48,108 C35,110 28,105 30,95 Z" fill="currentColor" filter="url(#rough)"/><path d="M190,78 C200,70 210,78 205,95 C200,112 195,110 192,100 Q195,90 190,78 Z" fill="currentColor"/><path d="M145,108 Q150,125 140,135 M165,108 Q170,128 160,138" stroke="currentColor" stroke-width="4" fill="none"/><circle cx="180" cy="60" r="3" fill="rgba(0,0,0,.7)"/></symbol>
+    <symbol id="pg-deer" viewBox="0 0 180 160"><path d="M20,110 L25,75 C25,70 32,68 36,72 L40,95 L110,95 L118,70 C120,65 128,65 130,70 L135,105 L145,108 L147,115 L140,118 L137,130 L130,132 L128,120 L55,120 L52,135 L45,137 L42,122 L30,120 L25,130 L18,128 Z" fill="currentColor" filter="url(#rough)"/><path d="M35,70 L25,40 M35,70 L20,50 M35,70 L40,35 M125,68 L115,35 M125,68 L135,40 M125,68 L130,30" stroke="currentColor" stroke-width="3" fill="none"/><circle cx="130" cy="78" r="2.5" fill="rgba(0,0,0,.6)"/></symbol>
+    <symbol id="pg-horse" viewBox="0 0 200 130"><path d="M20,95 C22,70 35,58 65,55 C70,40 80,32 95,38 C115,30 140,35 160,50 C172,58 178,70 175,85 L178,105 L170,108 L165,95 L135,95 L132,110 L125,112 L122,95 L65,95 L62,110 L55,112 L52,95 L35,95 L32,108 L24,108 Z" fill="currentColor" filter="url(#rough)"/><path d="M90,40 L85,25 M100,38 L102,22" stroke="currentColor" stroke-width="3" fill="none"/><circle cx="155" cy="62" r="2.5" fill="rgba(0,0,0,.7)"/></symbol>
+    <symbol id="pg-hand" viewBox="0 0 160 200"><path d="M45,185 C40,160 38,130 42,110 C32,100 28,85 32,72 C36,62 46,62 52,72 L58,95 L60,50 C62,38 76,36 80,48 L82,95 L90,35 C92,22 106,22 108,36 L108,95 L116,55 C118,42 132,44 132,58 L128,110 C132,130 130,160 124,185 Z" fill="currentColor" filter="url(#rough)"/></symbol>
+    <symbol id="pg-spiral" viewBox="0 0 100 100"><path d="M50,50 m0,0 a4,4 0 1,1 8,0 a8,8 0 1,1 -16,0 a14,14 0 1,1 28,0 a20,20 0 1,1 -40,0 a26,26 0 1,1 48,-6" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#rough)"/></symbol>
+    <symbol id="pg-paw" viewBox="0 0 100 100"><ellipse cx="50" cy="65" rx="22" ry="18" fill="currentColor"/><ellipse cx="25" cy="40" rx="9" ry="11" fill="currentColor"/><ellipse cx="42" cy="22" rx="9" ry="11" fill="currentColor"/><ellipse cx="62" cy="22" rx="9" ry="11" fill="currentColor"/><ellipse cx="78" cy="40" rx="9" ry="11" fill="currentColor"/></symbol>
+    <symbol id="pg-dots" viewBox="0 0 100 100"><circle cx="20" cy="20" r="6" fill="currentColor"/><circle cx="50" cy="25" r="5" fill="currentColor"/><circle cx="78" cy="18" r="7" fill="currentColor"/><circle cx="30" cy="50" r="5" fill="currentColor"/><circle cx="62" cy="55" r="6" fill="currentColor"/><circle cx="22" cy="80" r="5" fill="currentColor"/><circle cx="55" cy="82" r="6" fill="currentColor"/><circle cx="82" cy="75" r="5" fill="currentColor"/></symbol>
+    <symbol id="pg-spear" viewBox="0 0 120 30"><path d="M2,15 L95,15 M85,5 L110,15 L85,25 M15,9 L15,21 M35,10 L35,20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="pg-sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="18" fill="none" stroke="currentColor" stroke-width="4"/><g stroke="currentColor" stroke-width="4" stroke-linecap="round"><line x1="50" y1="12" x2="50" y2="24"/><line x1="50" y1="76" x2="50" y2="88"/><line x1="12" y1="50" x2="24" y2="50"/><line x1="76" y1="50" x2="88" y2="50"/><line x1="22" y1="22" x2="30" y2="30"/><line x1="70" y1="70" x2="78" y2="78"/><line x1="22" y1="78" x2="30" y2="70"/><line x1="70" y1="30" x2="78" y2="22"/></g></symbol>
+  </defs>
+</svg>
+
+<div id="root"></div>
+
+<script type="text/babel" src="Pictograph.jsx"></script>
+<script type="text/babel" src="Frieze.jsx"></script>
+<script type="text/babel" src="Controls.jsx"></script>
+<script type="text/babel" src="Cards.jsx"></script>
+<script type="text/babel" src="Wall.jsx"></script>
+<script type="text/babel" src="Screens.jsx"></script>
+
+<script type="text/babel">
+  function App() {
+    const [screen, setScreen] = React.useState('wall');
+    return screen === 'wall'
+      ? <NoticeWall onOpenLog={() => setScreen('log')} />
+      : <HuntLog onBack={() => setScreen('wall')} />;
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

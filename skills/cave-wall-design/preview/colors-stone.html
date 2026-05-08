@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Rock tones</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;padding:26px 30px;}
+  .row{display:flex;height:180px;border:2px solid var(--charcoal);}
+  .swatch{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;}
+  .name{font-family:var(--font-stamp);font-size:13px;letter-spacing:.06em;color:var(--bone);text-transform:uppercase;}
+  .hex{font-family:var(--font-stamp);font-size:11px;color:var(--bone);opacity:.7;}
+  .dark .name,.dark .hex{color:var(--bone);}
+  .light .name,.light .hex{color:var(--charcoal);}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<div class="wrap">
+<div class="row">
+  <div class="swatch dark" style="background:#2a1d12"><span class="name">Stone 0</span><span class="hex">#2A1D12</span></div>
+  <div class="swatch dark" style="background:#3b2a1b"><span class="name">Stone 1</span><span class="hex">#3B2A1B</span></div>
+  <div class="swatch dark" style="background:#6b4a2e"><span class="name">Stone 2</span><span class="hex">#6B4A2E</span></div>
+  <div class="swatch dark" style="background:#8a6a44"><span class="name">Stone 3</span><span class="hex">#8A6A44</span></div>
+  <div class="swatch light" style="background:#b08a5c"><span class="name">Stone 4</span><span class="hex">#B08A5C</span></div>
+  <div class="swatch light" style="background:#d4b27c"><span class="name">Stone 5</span><span class="hex">#D4B27C</span></div>
+</div>
+</div></body></html>

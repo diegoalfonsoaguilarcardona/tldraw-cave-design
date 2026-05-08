@@ -1,0 +1,68 @@
+/* Cave Wall Design System — Luminoso theme
+   Daylight limestone: same pigments and hand-made marks, now on a sunlit rock face.
+   Warm sand background, dark ink text, subtle golden atmosphere. */
+
+:root[data-theme="luminoso"] {
+  /* Rock palette — sunlit limestone scale */
+  --stone-0: #c8a068;    /* amber shadow */
+  --stone-1: #e0c898;    /* warm sand (main bg) */
+  --stone-2: #eadec4;    /* light limestone */
+  --stone-3: #f2eadc;    /* near-white warm */
+  --stone-4: #b8904a;    /* golden stone face */
+  --stone-5: #785030;    /* deep amber */
+
+  /* Pigments — same family, vivid on light ground */
+  --ochre-red:       #b03820;
+  --ochre-deep:      #8b2f1a;
+  --ochre-yellow:    #c8841e;
+  --ochre-yellow-lt: #d9941f;
+  --charcoal:        #1a120a;
+  --bone:            #efe3c7;
+  --bone-dim:        #d9cca7;
+  --ember:           #e86a1a;
+
+  /* Semantic — dark text on light stone */
+  --bg:     var(--stone-1);
+  --fg:     var(--charcoal);
+  --fg-dim: var(--stone-5);
+  --accent:   var(--ochre-red);
+  --accent-2: var(--ochre-yellow);
+  --ink:      var(--charcoal);
+
+  /* Panel — near-white card with warm rim (contrast against sandy bg) */
+  --parchment-light: #f5ead5;
+  --parchment-mid:   #e8d8b8;
+  --parchment-dark:  #c8a870;
+  --parchment-fg:    var(--charcoal);
+
+  /* Shadows — lighter, less dramatic on light bg */
+  --shadow-warm: rgba(90,50,10,.18);
+  --border-warm: rgba(60,30,10,.28);
+  --shadow-panel: inset 0 0 30px var(--shadow-warm), 0 4px 14px rgba(0,0,0,.18);
+
+  /* Atmosphere — subtle golden, no dark vignette */
+  --wall-glow-color:    rgba(220,180,80,.10);
+  --wall-vignette:      rgba(0,0,0,.04);
+  --wall-vignette-deep: rgba(0,0,0,.09);
+  --wall-ember-a:       rgba(200,160,60,.07);
+  --wall-ember-b:       rgba(200,160,60,.05);
+
+  /* Chip — warm tan stands out on sandy bg */
+  --chip-bg: rgba(180,140,90,.85);
+}
+
+/* Rock texture override — sandy limestone grain (lighter feColorMatrix) */
+:root[data-theme="luminoso"] .cv-wall::before {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.42  0 0 0 0 0.22  0 0 0 .20 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/><feColorMatrix values='0 0 0 0 0.50  0 0 0 0 0.38  0 0 0 0 0.18  0 0 0 .12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: .65;
+}
+
+/* Vignette override — barely-there edge in daylight */
+:root[data-theme="luminoso"] .cv-wall::after {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, transparent 40%, var(--wall-vignette) 85%, var(--wall-vignette-deep) 100%),
+    radial-gradient(circle at 8% 92%, var(--wall-ember-a), transparent 30%),
+    radial-gradient(circle at 92% 8%, var(--wall-ember-b), transparent 30%);
+}

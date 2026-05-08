@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Scrawled body specimen</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:220px;padding:20px 30px;position:relative;}
+  .cv-wall{position:absolute;inset:0;}
+  .inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:6px;justify-content:center;height:100%;}
+  .meta{font-family:var(--font-stamp);font-size:12px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;}
+  .body{font-family:var(--font-scrawl);font-size:34px;line-height:1.15;color:var(--bone);font-weight:500;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="inner">
+    <div class="meta">Caveat · Scrawled body</div>
+    <div class="body">iron in the clay.<br/>crush. spit. smear.<br/>the wall remembers.</div>
+  </div>
+</div>
+</body></html>

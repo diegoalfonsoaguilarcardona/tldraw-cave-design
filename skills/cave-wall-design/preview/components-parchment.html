@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Parchment panel</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:280px;padding:26px 30px;position:relative;}
+  .cv-wall{position:absolute;inset:0;}
+  .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:18px;height:100%;}
+  .panel{background:radial-gradient(ellipse at 30% 20%, #f3e2b8, #d9bf89 70%, #a98651);border:3px solid rgba(60,30,10,.5);box-shadow:inset 0 0 30px rgba(90,50,10,.35), 0 4px 14px rgba(0,0,0,.5);padding:18px;color:var(--charcoal);filter:url(#rough);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+  .title{font-family:var(--font-painted);font-size:22px;color:var(--ochre-deep);margin-bottom:8px;}
+  .body{font-family:var(--font-scrawl);font-size:18px;line-height:1.2;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="grid">
+    <div class="panel"><div class="title">PARCHMENT</div><div class="body">warm inner glow.<br/>charcoal border.<br/>straight edges.</div></div>
+    <div class="panel"><div class="title">INNER SHADOW</div><div class="body">inset 0 0 30px<br/>rgba(90,50,10,.35)</div></div>
+  </div>
+</div>
+</body></html>

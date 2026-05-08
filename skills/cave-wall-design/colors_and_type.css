@@ -1,0 +1,153 @@
+/* Cave Wall Design System — colors & type */
+
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Finger+Paint&family=Rye&display=swap');
+
+:root {
+  /* ----- Rock palette (background tones) ----- */
+  --stone-0: #2a1d12;     /* deep cave shadow */
+  --stone-1: #3b2a1b;     /* rock shadow */
+  --stone-2: #6b4a2e;     /* mid rock */
+  --stone-3: #8a6a44;     /* lit rock */
+  --stone-4: #b08a5c;     /* highlight rock */
+  --stone-5: #d4b27c;     /* warm rim */
+
+  /* ----- Pigments ----- */
+  --ochre-red:       #8b2f1a;
+  --ochre-deep:      #5d1d10;
+  --ochre-yellow:    #c8841e;
+  --ochre-yellow-lt: #e1a94a;
+  --charcoal:        #1a120a;
+  --bone:            #efe3c7;
+  --bone-dim:        #d9cca7;
+  --ember:           #ff7a2b;
+
+  /* ----- Semantic ----- */
+  --bg:              var(--stone-1);
+  --fg:              var(--bone);
+  --fg-dim:          var(--bone-dim);
+  --accent:          var(--ochre-red);
+  --accent-2:        var(--ochre-yellow);
+  --ink:             var(--charcoal);
+
+  /* ----- Type families ----- */
+  --font-painted: 'Rubik Dirt', cursive;        /* hero + titles */
+  --font-scrawl:  'Finger Paint', cursive;      /* body + handwriting */
+  --font-stamp:   'Rye', 'Courier New', monospace;  /* labels + chips */
+
+  /* ----- Type scale (1920×1080 canvas) ----- */
+  --fs-hero:     150px;
+  --fs-title:    110px;
+  --fs-title-sm: 78px;
+  --fs-subtitle: 56px;
+  --fs-body-lg:  54px;
+  --fs-body:     42px;
+  --fs-small:    38px;
+  --fs-label:    26px;
+
+  /* ----- Spacing ----- */
+  --pad-frame:  100px;
+  --pad-frame-x: 140px;
+  --gap-title:  52px;
+  --gap-item:   28px;
+
+  /* ----- Panel / parchment gradient stops ----- */
+  --parchment-light: #f3e2b8;
+  --parchment-mid:   #d9bf89;
+  --parchment-dark:  #a98651;
+  --parchment-fg:    var(--charcoal);
+
+  /* ----- Contextual shadows (warm-tinted) ----- */
+  --shadow-warm: rgba(90,50,10,.35);
+  --border-warm: rgba(60,30,10,.5);
+
+  /* ----- Background atmosphere ----- */
+  --wall-glow-color:    rgba(255,160,60,.18);
+  --wall-vignette:      rgba(0,0,0,.55);
+  --wall-vignette-deep: rgba(0,0,0,.85);
+  --wall-ember-a:       rgba(255,120,40,.18);
+  --wall-ember-b:       rgba(255,120,40,.14);
+
+  /* ----- Chip background ----- */
+  --chip-bg: rgba(239,227,199,.88);
+
+  /* ----- Shadows ----- */
+  --shadow-painted: 3px 3px 0 rgba(0,0,0,.35);
+  --shadow-painted-sm: 2px 2px 0 rgba(0,0,0,.35);
+  --shadow-panel: inset 0 0 40px var(--shadow-warm), 0 6px 18px rgba(0,0,0,.5);
+}
+
+/* ---------- Semantic classes ---------- */
+
+.h1,
+.cv-title-hero {
+  font-family: var(--font-painted);
+  font-size: var(--fs-hero);
+  line-height: .95;
+  color: var(--accent);
+  text-shadow: var(--shadow-painted);
+  letter-spacing: .02em;
+}
+
+.h2,
+.cv-title {
+  font-family: var(--font-painted);
+  font-size: var(--fs-title);
+  line-height: 1;
+  color: var(--accent);
+  text-shadow: var(--shadow-painted);
+}
+
+.h3,
+.cv-title-sm {
+  font-family: var(--font-painted);
+  font-size: var(--fs-title-sm);
+  line-height: 1.05;
+  color: var(--accent);
+  text-shadow: var(--shadow-painted-sm);
+}
+
+.cv-subtitle {
+  font-family: var(--font-scrawl);
+  font-size: var(--fs-subtitle);
+  color: var(--fg);
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.p,
+.cv-body {
+  font-family: var(--font-scrawl);
+  font-size: var(--fs-body);
+  line-height: 1.25;
+  color: var(--fg);
+}
+
+.cv-body-lg {
+  font-family: var(--font-scrawl);
+  font-size: var(--fs-body-lg);
+  line-height: 1.2;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.cv-label,
+.cv-chip {
+  font-family: var(--font-stamp);
+  font-size: var(--fs-label);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ---------- Color utilities ---------- */
+
+.cv-ink     { color: var(--ink); }
+.cv-red     { color: var(--ochre-red); }
+.cv-yellow  { color: var(--ochre-yellow); }
+.cv-bone    { color: var(--bone); }
+.cv-charcoal{ color: var(--charcoal); }
+
+/* Apply the painted-stroke look to any text. Requires the
+   shared SVG defs (rough filter) to be present in the page. */
+.cv-painted { filter: url(#rough); }

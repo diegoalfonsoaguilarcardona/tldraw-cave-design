@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Cave Wall — Style Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Exo+2:wght@400;700;800;900&family=Finger+Paint&family=Rubik+Dirt&family=Rye&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;color:#eee;font-family:system-ui,sans-serif;}
+
+/* ── Column custom properties ── */
+.col-cueva {
+  --bg:#3b2a1b; --stone-0:#2a1d12; --stone-2:#6b4a2e; --stone-3:#8a6a44; --stone-4:#b08a5c;
+  --ochre-red:#8b2f1a; --ochre-yellow:#c8841e; --charcoal:#1a120a;
+  --bone:#efe3c7; --bone-dim:#d9cca7;
+  --fg:#efe3c7; --fg-dim:#d9cca7; --accent:#8b2f1a; --accent-2:#c8841e;
+  --parchment-light:#f3e2b8; --parchment-mid:#d9bf89; --parchment-dark:#a98651; --parchment-fg:#1a120a;
+  --font-painted:'Rubik Dirt',cursive;
+  --font-scrawl:'Finger Paint',cursive;
+  --font-stamp:'Rye','Courier New',monospace;
+  background:var(--bg); color:var(--fg);
+}
+.col-luminoso {
+  --bg:#e0c898; --stone-0:#c8a068; --stone-2:#eadec4; --stone-3:#f2eadc; --stone-4:#b8904a;
+  --ochre-red:#b03820; --ochre-yellow:#c8841e; --charcoal:#1a120a;
+  --bone:#efe3c7; --bone-dim:#d9cca7;
+  --fg:#1a120a; --fg-dim:#785030; --accent:#b03820; --accent-2:#c8841e;
+  --parchment-light:#f5ead5; --parchment-mid:#e8d8b8; --parchment-dark:#c8a870; --parchment-fg:#1a120a;
+  --font-painted:'Rubik Dirt',cursive;
+  --font-scrawl:'Finger Paint',cursive;
+  --font-stamp:'Rye','Courier New',monospace;
+  background:var(--bg); color:var(--fg);
+}
+.col-moderno {
+  --bg:#f4efe6; --stone-0:#e2d8cc; --stone-2:#faf7f2; --stone-3:#d0c4b0; --stone-4:#b89050;
+  --ochre-red:#be3e1c; --ochre-yellow:#c88c00; --charcoal:#18120a;
+  --bone:#efe8d8; --bone-dim:#c4b49a;
+  --fg:#18120a; --fg-dim:#50341a; --accent:#be3e1c; --accent-2:#c88c00;
+  --parchment-light:#ffffff; --parchment-mid:#f8f4ef; --parchment-dark:#ede6dc; --parchment-fg:#18120a;
+  --font-painted:'Exo 2',sans-serif;
+  --font-scrawl:'DM Sans',system-ui,sans-serif;
+  --font-stamp:'Space Mono','Courier New',monospace;
+  background:var(--bg); color:var(--fg);
+}
+
+/* ── Layout ── */
+.page-title {
+  text-align:center; padding:28px 20px 20px;
+  font-family:'Space Mono','Courier New',monospace; font-size:13px;
+  letter-spacing:.2em; color:#c8841e; text-transform:uppercase;
+}
+.col-bar {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  position:sticky; top:0; z-index:100;
+}
+.col-bar-label {
+  text-align:center; padding:10px;
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:700;
+}
+.col-bar-label.col-cueva   { background:#2a1d12; color:#efe3c7; border-bottom:3px solid #8b2f1a; }
+.col-bar-label.col-luminoso{ background:#c8a068; color:#1a120a; border-bottom:3px solid #b03820; }
+.col-bar-label.col-moderno { background:#e2d8cc; color:#18120a; border-bottom:3px solid #be3e1c; }
+
+.demo-grid { display:grid; grid-template-columns:1fr 1fr 1fr; }
+.section-head {
+  grid-column:1/-1; padding:12px 24px;
+  background:#1a1108; color:#c8841e;
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  border-top:1px solid #2a1d12; border-bottom:1px solid #2a1d12;
+}
+.cell { padding:22px 18px; border-right:1px solid rgba(0,0,0,.2); }
+.cell:last-child { border-right:none; }
+
+/* ── Typography elements ── */
+.demo-h1 {
+  font-family:var(--font-painted); font-size:34px; line-height:1;
+  color:var(--accent); margin-bottom:10px;
+}
+.col-moderno .demo-h1 { font-weight:900; letter-spacing:.03em; }
+.demo-h2 {
+  font-family:var(--font-painted); font-size:20px;
+  color:var(--fg); margin-bottom:8px;
+}
+.col-moderno .demo-h2 { font-weight:800; }
+.demo-body {
+  font-family:var(--font-scrawl); font-size:14px;
+  color:var(--fg); line-height:1.5; margin-bottom:8px;
+}
+.demo-label {
+  font-family:var(--font-stamp); font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--fg-dim);
+}
+
+/* ── Palette swatches ── */
+.swatch-row { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px; }
+.swatch { width:28px; height:28px; border:1px solid rgba(0,0,0,.2); }
+
+/* ── Components ── */
+.demo-btn {
+  display:inline-block; cursor:pointer; margin-bottom:10px;
+  font-family:var(--font-stamp); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  padding:7px 16px; border:2px solid var(--accent); color:var(--fg); background:transparent;
+}
+.demo-chip {
+  display:inline-block; margin-right:5px; margin-bottom:6px;
+  font-family:var(--font-stamp); font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:4px 10px; background:var(--parchment-mid); color:var(--parchment-fg);
+  border:1px solid rgba(60,30,10,.3);
+}
+.demo-panel {
+  background:radial-gradient(ellipse at 30% 20%, var(--parchment-light), var(--parchment-mid) 70%, var(--parchment-dark));
+  border:2px solid rgba(60,30,10,.4); padding:12px 14px; margin-top:4px;
+  font-family:var(--font-scrawl); font-size:13px; line-height:1.4; color:var(--parchment-fg);
+}
+
+/* ── Table ── */
+.demo-table { width:100%; border-collapse:collapse; }
+.demo-table th {
+  font-family:var(--font-stamp); font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--fg-dim); padding:6px 8px; border-bottom:2px solid var(--accent); text-align:left;
+}
+.demo-table td {
+  font-family:var(--font-scrawl); font-size:12px; color:var(--fg);
+  padding:5px 8px; border-bottom:1px solid rgba(128,80,20,.18);
+}
+.demo-table tr:last-child td { border-bottom:none; }
+
+/* ── Charts ── */
+.chart-svg { display:block; width:100%; height:auto; }
+
+/* Moderno: remove SVG displacement filters */
+.col-moderno path,
+.col-moderno ellipse,
+.col-moderno circle,
+.col-moderno line { filter:none !important; }
+
+/* SVG text font per column (overrides any font-family attr) */
+.col-cueva svg text, .col-luminoso svg text {
+  font-family:'Rye','Courier New',monospace !important;
+}
+.col-moderno svg text {
+  font-family:'Space Mono','Courier New',monospace !important;
+}
+</style>
+</head>
+<body>
+
+<!-- Shared SVG defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <radialGradient id="disk-c" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#efe3c7"/><stop offset="70%" stop-color="#c8841e"/><stop offset="100%" stop-color="#6b4a2e"/>
+    </radialGradient>
+    <radialGradient id="disk-l" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#f5ead5"/><stop offset="70%" stop-color="#c8841e"/><stop offset="100%" stop-color="#b8904a"/>
+    </radialGradient>
+    <radialGradient id="disk-m" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="70%" stop-color="#c88c00"/><stop offset="100%" stop-color="#b89050"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<div class="page-title">Cave Wall · Style Comparison · Cueva / Luminoso / Moderno</div>
+
+<div class="col-bar">
+  <div class="col-bar-label col-cueva">Cueva — dark cave</div>
+  <div class="col-bar-label col-luminoso">Luminoso — daylight</div>
+  <div class="col-bar-label col-moderno">Moderno — geometric</div>
+</div>
+
+<div class="demo-grid">
+
+  <!-- ────────────── I. TYPOGRAPHY ────────────── -->
+  <div class="section-head">I — Typography</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-h1">THE HUNT</div>
+    <div class="demo-h2">Marks on stone</div>
+    <div class="demo-body">before the word, the picture. painted in ochre, scratched in rock, left for those who come after.</div>
+    <div class="demo-label">dawn · count: 7 moons</div>
+  </div>
+  <div class="cell col-luminoso">
+    <div class="demo-h1">THE HUNT</div>
+    <div class="demo-h2">Marks on stone</div>
+    <div class="demo-body">before the word, the picture. painted in ochre, scratched in rock, left for those who come after.</div>
+    <div class="demo-label">dawn · count: 7 moons</div>
+  </div>
+  <div class="cell col-moderno">
+    <div class="demo-h1">THE HUNT</div>
+    <div class="demo-h2">Marks on stone</div>
+    <div class="demo-body">before the word, the picture. painted in ochre, scratched in rock, left for those who come after.</div>
+    <div class="demo-label">dawn · count: 7 moons</div>
+  </div>
+
+  <!-- ────────────── II. PALETTE ────────────── -->
+  <div class="section-head">II — Color Palette</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-label" style="margin-bottom:6px">stone scale</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#2a1d12" title="stone-0"></div>
+      <div class="swatch" style="background:#3b2a1b" title="stone-1"></div>
+      <div class="swatch" style="background:#6b4a2e" title="stone-2"></div>
+      <div class="swatch" style="background:#8a6a44" title="stone-3"></div>
+      <div class="swatch" style="background:#b08a5c" title="stone-4"></div>
+      <div class="swatch" style="background:#d4b27c" title="stone-5"></div>
+    </div>
+    <div class="demo-label" style="margin-bottom:6px;margin-top:8px">pigments</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#8b2f1a" title="ochre-red"></div>
+      <div class="swatch" style="background:#c8841e" title="ochre-yellow"></div>
+      <div class="swatch" style="background:#efe3c7" title="bone"></div>
+      <div class="swatch" style="background:#1a120a" title="charcoal"></div>
+      <div class="swatch" style="background:#ff7a2b" title="ember"></div>
+    </div>
+  </div>
+  <div class="cell col-luminoso">
+    <div class="demo-label" style="margin-bottom:6px">stone scale</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#c8a068" title="stone-0"></div>
+      <div class="swatch" style="background:#e0c898" title="stone-1"></div>
+      <div class="swatch" style="background:#eadec4" title="stone-2"></div>
+      <div class="swatch" style="background:#f2eadc" title="stone-3"></div>
+      <div class="swatch" style="background:#b8904a" title="stone-4"></div>
+      <div class="swatch" style="background:#785030" title="stone-5"></div>
+    </div>
+    <div class="demo-label" style="margin-bottom:6px;margin-top:8px">pigments</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#b03820" title="ochre-red"></div>
+      <div class="swatch" style="background:#c8841e" title="ochre-yellow"></div>
+      <div class="swatch" style="background:#efe3c7" title="bone"></div>
+      <div class="swatch" style="background:#1a120a" title="charcoal"></div>
+      <div class="swatch" style="background:#e86a1a" title="ember"></div>
+    </div>
+  </div>
+  <div class="cell col-moderno">
+    <div class="demo-label" style="margin-bottom:6px">stone scale</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#e2d8cc" title="stone-0"></div>
+      <div class="swatch" style="background:#f4efe6" title="stone-1"></div>
+      <div class="swatch" style="background:#faf7f2" title="stone-2"></div>
+      <div class="swatch" style="background:#d0c4b0" title="stone-3"></div>
+      <div class="swatch" style="background:#b89050" title="stone-4"></div>
+      <div class="swatch" style="background:#50341a" title="stone-5"></div>
+    </div>
+    <div class="demo-label" style="margin-bottom:6px;margin-top:8px">pigments</div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#be3e1c" title="ochre-red"></div>
+      <div class="swatch" style="background:#c88c00" title="ochre-yellow"></div>
+      <div class="swatch" style="background:#efe8d8" title="bone"></div>
+      <div class="swatch" style="background:#18120a" title="charcoal"></div>
+      <div class="swatch" style="background:#ff7030" title="ember"></div>
+    </div>
+  </div>
+
+  <!-- ────────────── III. COMPONENTS ────────────── -->
+  <div class="section-head">III — Components</div>
+
+  <div class="cell col-cueva">
+    <button class="demo-btn">Hunt begins</button>
+    <div><span class="demo-chip">bison</span><span class="demo-chip">dawn</span><span class="demo-chip">rain</span></div>
+    <div class="demo-panel">a stone panel with parchment texture — for messages scratched at camp by firelight.</div>
+  </div>
+  <div class="cell col-luminoso">
+    <button class="demo-btn">Hunt begins</button>
+    <div><span class="demo-chip">bison</span><span class="demo-chip">dawn</span><span class="demo-chip">rain</span></div>
+    <div class="demo-panel">a stone panel with parchment texture — for messages scratched at camp by firelight.</div>
+  </div>
+  <div class="cell col-moderno">
+    <button class="demo-btn">Hunt begins</button>
+    <div><span class="demo-chip">bison</span><span class="demo-chip">dawn</span><span class="demo-chip">rain</span></div>
+    <div class="demo-panel">a stone panel with parchment texture — for messages scratched at camp by firelight.</div>
+  </div>
+
+  <!-- ────────────── IV. TABLE ────────────── -->
+  <div class="section-head">IV — Data Table</div>
+
+  <div class="cell col-cueva">
+    <table class="demo-table">
+      <thead><tr><th>beast</th><th>count</th><th>distance</th><th>season</th></tr></thead>
+      <tbody>
+        <tr><td>bison</td><td>15</td><td>3 days</td><td>dry</td></tr>
+        <tr><td>deer</td><td>10</td><td>1 day</td><td>rain</td></tr>
+        <tr><td>horse</td><td>7</td><td>2 days</td><td>cold</td></tr>
+        <tr><td>mammoth</td><td>2</td><td>5 days</td><td>dry</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cell col-luminoso">
+    <table class="demo-table">
+      <thead><tr><th>beast</th><th>count</th><th>distance</th><th>season</th></tr></thead>
+      <tbody>
+        <tr><td>bison</td><td>15</td><td>3 days</td><td>dry</td></tr>
+        <tr><td>deer</td><td>10</td><td>1 day</td><td>rain</td></tr>
+        <tr><td>horse</td><td>7</td><td>2 days</td><td>cold</td></tr>
+        <tr><td>mammoth</td><td>2</td><td>5 days</td><td>dry</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cell col-moderno">
+    <table class="demo-table">
+      <thead><tr><th>beast</th><th>count</th><th>distance</th><th>season</th></tr></thead>
+      <tbody>
+        <tr><td>bison</td><td>15</td><td>3 days</td><td>dry</td></tr>
+        <tr><td>deer</td><td>10</td><td>1 day</td><td>rain</td></tr>
+        <tr><td>horse</td><td>7</td><td>2 days</td><td>cold</td></tr>
+        <tr><td>mammoth</td><td>2</td><td>5 days</td><td>dry</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ────────────── V. TRAIL CHART ────────────── -->
+  <div class="section-head">V — Trail Chart (line)</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-label" style="margin-bottom:6px">beasts seen over time</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="12" fill="#d9cca7">30</text>
+      <text x="38" y="102" text-anchor="end" font-size="12" fill="#d9cca7">20</text>
+      <text x="38" y="152" text-anchor="end" font-size="12" fill="#d9cca7">10</text>
+      <text x="120" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">dawn</text>
+      <text x="230" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">mid</text>
+      <text x="340" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">sun</text>
+      <text x="450" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">dusk</text>
+      <text x="560" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">dark</text>
+      <path d="M120,150 L180,126 L230,114 L290,82 L340,68 L390,76 L450,54 L510,66 L560,86" fill="none" stroke="#8b2f1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>
+      <g fill="#8b2f1a" filter="url(#rough)">
+        <ellipse cx="120" cy="150" rx="7" ry="6"/><circle cx="113" cy="142" r="2.5"/><circle cx="120" cy="139" r="2.5"/><circle cx="127" cy="142" r="2.5"/>
+        <ellipse cx="230" cy="114" rx="7" ry="6"/><circle cx="223" cy="106" r="2.5"/><circle cx="230" cy="103" r="2.5"/><circle cx="237" cy="106" r="2.5"/>
+        <ellipse cx="340" cy="68"  rx="7" ry="6"/><circle cx="333" cy="60"  r="2.5"/><circle cx="340" cy="57"  r="2.5"/><circle cx="347" cy="60"  r="2.5"/>
+        <ellipse cx="450" cy="54"  rx="7" ry="6"/><circle cx="443" cy="46"  r="2.5"/><circle cx="450" cy="43"  r="2.5"/><circle cx="457" cy="46"  r="2.5"/>
+        <ellipse cx="560" cy="86"  rx="7" ry="6"/><circle cx="553" cy="78"  r="2.5"/><circle cx="560" cy="75"  r="2.5"/><circle cx="567" cy="78"  r="2.5"/>
+      </g>
+      <text x="565" y="72" font-size="11" fill="#8b2f1a">herd</text>
+    </svg>
+  </div>
+
+  <div class="cell col-luminoso">
+    <div class="demo-label" style="margin-bottom:6px">beasts seen over time</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="12" fill="#785030">30</text>
+      <text x="38" y="102" text-anchor="end" font-size="12" fill="#785030">20</text>
+      <text x="38" y="152" text-anchor="end" font-size="12" fill="#785030">10</text>
+      <text x="120" y="200" text-anchor="middle" font-size="11" fill="#785030">dawn</text>
+      <text x="230" y="200" text-anchor="middle" font-size="11" fill="#785030">mid</text>
+      <text x="340" y="200" text-anchor="middle" font-size="11" fill="#785030">sun</text>
+      <text x="450" y="200" text-anchor="middle" font-size="11" fill="#785030">dusk</text>
+      <text x="560" y="200" text-anchor="middle" font-size="11" fill="#785030">dark</text>
+      <path d="M120,150 L180,126 L230,114 L290,82 L340,68 L390,76 L450,54 L510,66 L560,86" fill="none" stroke="#b03820" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>
+      <g fill="#b03820" filter="url(#rough)">
+        <ellipse cx="120" cy="150" rx="7" ry="6"/><circle cx="113" cy="142" r="2.5"/><circle cx="120" cy="139" r="2.5"/><circle cx="127" cy="142" r="2.5"/>
+        <ellipse cx="230" cy="114" rx="7" ry="6"/><circle cx="223" cy="106" r="2.5"/><circle cx="230" cy="103" r="2.5"/><circle cx="237" cy="106" r="2.5"/>
+        <ellipse cx="340" cy="68"  rx="7" ry="6"/><circle cx="333" cy="60"  r="2.5"/><circle cx="340" cy="57"  r="2.5"/><circle cx="347" cy="60"  r="2.5"/>
+        <ellipse cx="450" cy="54"  rx="7" ry="6"/><circle cx="443" cy="46"  r="2.5"/><circle cx="450" cy="43"  r="2.5"/><circle cx="457" cy="46"  r="2.5"/>
+        <ellipse cx="560" cy="86"  rx="7" ry="6"/><circle cx="553" cy="78"  r="2.5"/><circle cx="560" cy="75"  r="2.5"/><circle cx="567" cy="78"  r="2.5"/>
+      </g>
+      <text x="565" y="72" font-size="11" fill="#b03820">herd</text>
+    </svg>
+  </div>
+
+  <div class="cell col-moderno">
+    <div class="demo-label" style="margin-bottom:6px">beasts seen over time</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#18120a" stroke-width="2" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#18120a" stroke-width="2" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="12" fill="#50341a">30</text>
+      <text x="38" y="102" text-anchor="end" font-size="12" fill="#50341a">20</text>
+      <text x="38" y="152" text-anchor="end" font-size="12" fill="#50341a">10</text>
+      <text x="120" y="200" text-anchor="middle" font-size="11" fill="#50341a">dawn</text>
+      <text x="230" y="200" text-anchor="middle" font-size="11" fill="#50341a">mid</text>
+      <text x="340" y="200" text-anchor="middle" font-size="11" fill="#50341a">sun</text>
+      <text x="450" y="200" text-anchor="middle" font-size="11" fill="#50341a">dusk</text>
+      <text x="560" y="200" text-anchor="middle" font-size="11" fill="#50341a">dark</text>
+      <path d="M120,150 L180,126 L230,114 L290,82 L340,68 L390,76 L450,54 L510,66 L560,86" fill="none" stroke="#be3e1c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>
+      <g fill="#be3e1c" filter="url(#rough)">
+        <ellipse cx="120" cy="150" rx="7" ry="6"/><circle cx="113" cy="142" r="2.5"/><circle cx="120" cy="139" r="2.5"/><circle cx="127" cy="142" r="2.5"/>
+        <ellipse cx="230" cy="114" rx="7" ry="6"/><circle cx="223" cy="106" r="2.5"/><circle cx="230" cy="103" r="2.5"/><circle cx="237" cy="106" r="2.5"/>
+        <ellipse cx="340" cy="68"  rx="7" ry="6"/><circle cx="333" cy="60"  r="2.5"/><circle cx="340" cy="57"  r="2.5"/><circle cx="347" cy="60"  r="2.5"/>
+        <ellipse cx="450" cy="54"  rx="7" ry="6"/><circle cx="443" cy="46"  r="2.5"/><circle cx="450" cy="43"  r="2.5"/><circle cx="457" cy="46"  r="2.5"/>
+        <ellipse cx="560" cy="86"  rx="7" ry="6"/><circle cx="553" cy="78"  r="2.5"/><circle cx="560" cy="75"  r="2.5"/><circle cx="567" cy="78"  r="2.5"/>
+      </g>
+      <text x="565" y="72" font-size="11" fill="#be3e1c">herd</text>
+    </svg>
+  </div>
+
+  <!-- ────────────── VI. TALLY CHART ────────────── -->
+  <div class="section-head">VI — Tally Chart</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-label" style="margin-bottom:8px">beasts counted this moon</div>
+    <svg class="chart-svg" viewBox="0 0 370 130">
+      <text x="74" y="30"  text-anchor="end" font-size="14" fill="#efe3c7">bison</text>
+      <path d="M84,10 L84,34 M96,10 L96,34 M108,10 L108,34 M120,10 L120,34 M80,28 L124,16" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,10 L144,34 M156,10 L156,34 M168,10 L168,34 M180,10 L180,34 M140,28 L184,16" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M204,10 L204,34 M216,10 L216,34 M228,10 L228,34 M240,10 L240,34 M200,28 L244,16" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="260" y="28" font-size="13" fill="#efe3c7">= 15</text>
+      <text x="74" y="74"  text-anchor="end" font-size="14" fill="#efe3c7">deer</text>
+      <path d="M84,54 L84,78 M96,54 L96,78 M108,54 L108,78 M120,54 L120,78 M80,72 L124,60" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,54 L144,78 M156,54 L156,78 M168,54 L168,78 M180,54 L180,78 M140,72 L184,60" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="200" y="72" font-size="13" fill="#efe3c7">= 10</text>
+      <text x="74" y="118" text-anchor="end" font-size="14" fill="#efe3c7">mammoth</text>
+      <path d="M84,98 L84,122 M96,98 L96,122 M108,98 L108,122 M120,98 L120,122 M80,116 L124,104" stroke="#d9cca7" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="140" y="116" font-size="13" fill="#efe3c7">= 5</text>
+    </svg>
+  </div>
+
+  <div class="cell col-luminoso">
+    <div class="demo-label" style="margin-bottom:8px">beasts counted this moon</div>
+    <svg class="chart-svg" viewBox="0 0 370 130">
+      <text x="74" y="30"  text-anchor="end" font-size="14" fill="#1a120a">bison</text>
+      <path d="M84,10 L84,34 M96,10 L96,34 M108,10 L108,34 M120,10 L120,34 M80,28 L124,16" stroke="#b03820" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,10 L144,34 M156,10 L156,34 M168,10 L168,34 M180,10 L180,34 M140,28 L184,16" stroke="#b03820" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M204,10 L204,34 M216,10 L216,34 M228,10 L228,34 M240,10 L240,34 M200,28 L244,16" stroke="#b03820" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="260" y="28" font-size="13" fill="#1a120a">= 15</text>
+      <text x="74" y="74"  text-anchor="end" font-size="14" fill="#1a120a">deer</text>
+      <path d="M84,54 L84,78 M96,54 L96,78 M108,54 L108,78 M120,54 L120,78 M80,72 L124,60" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,54 L144,78 M156,54 L156,78 M168,54 L168,78 M180,54 L180,78 M140,72 L184,60" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="200" y="72" font-size="13" fill="#1a120a">= 10</text>
+      <text x="74" y="118" text-anchor="end" font-size="14" fill="#1a120a">mammoth</text>
+      <path d="M84,98 L84,122 M96,98 L96,122 M108,98 L108,122 M120,98 L120,122 M80,116 L124,104" stroke="#1a120a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="140" y="116" font-size="13" fill="#1a120a">= 5</text>
+    </svg>
+  </div>
+
+  <div class="cell col-moderno">
+    <div class="demo-label" style="margin-bottom:8px">beasts counted this moon</div>
+    <svg class="chart-svg" viewBox="0 0 370 130">
+      <text x="74" y="30"  text-anchor="end" font-size="14" fill="#18120a">bison</text>
+      <path d="M84,10 L84,34 M96,10 L96,34 M108,10 L108,34 M120,10 L120,34 M80,28 L124,16" stroke="#be3e1c" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,10 L144,34 M156,10 L156,34 M168,10 L168,34 M180,10 L180,34 M140,28 L184,16" stroke="#be3e1c" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M204,10 L204,34 M216,10 L216,34 M228,10 L228,34 M240,10 L240,34 M200,28 L244,16" stroke="#be3e1c" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="260" y="28" font-size="13" fill="#18120a">= 15</text>
+      <text x="74" y="74"  text-anchor="end" font-size="14" fill="#18120a">deer</text>
+      <path d="M84,54 L84,78 M96,54 L96,78 M108,54 L108,78 M120,54 L120,78 M80,72 L124,60" stroke="#c88c00" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <path d="M144,54 L144,78 M156,54 L156,78 M168,54 L168,78 M180,54 L180,78 M140,72 L184,60" stroke="#c88c00" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="200" y="72" font-size="13" fill="#18120a">= 10</text>
+      <text x="74" y="118" text-anchor="end" font-size="14" fill="#18120a">mammoth</text>
+      <path d="M84,98 L84,122 M96,98 L96,122 M108,98 L108,122 M120,98 L120,122 M80,116 L124,104" stroke="#50341a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="140" y="116" font-size="13" fill="#18120a">= 5</text>
+    </svg>
+  </div>
+
+  <!-- ────────────── VII. SCATTER CHART ────────────── -->
+  <div class="section-head">VII — Scatter Chart</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-label" style="margin-bottom:6px">distance vs time of day · dot size = group count</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="11" fill="#d9cca7">far</text>
+      <text x="38" y="116" text-anchor="end" font-size="11" fill="#d9cca7">mid</text>
+      <text x="185" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">dawn</text>
+      <text x="370" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">sun</text>
+      <text x="555" y="200" text-anchor="middle" font-size="11" fill="#d9cca7">dark</text>
+      <g fill="#8b2f1a" filter="url(#rough)">
+        <ellipse cx="120" cy="138" rx="9" ry="8"/><circle cx="111" cy="127" r="3"/><circle cx="120" cy="124" r="3"/><circle cx="129" cy="127" r="3"/>
+        <ellipse cx="210" cy="88"  rx="12" ry="10"/><circle cx="199" cy="74"  r="4"/><circle cx="210" cy="71"  r="4"/><circle cx="221" cy="74"  r="4"/>
+        <ellipse cx="310" cy="58"  rx="9" ry="8"/><circle cx="301" cy="47"  r="3"/><circle cx="310" cy="44"  r="3"/><circle cx="319" cy="47"  r="3"/>
+        <ellipse cx="430" cy="108" rx="7" ry="6"/><circle cx="423" cy="99" r="2.5"/><circle cx="430" cy="96"  r="2.5"/><circle cx="437" cy="99" r="2.5"/>
+        <ellipse cx="520" cy="73"  rx="11" ry="9"/><circle cx="510" cy="60"  r="3.5"/><circle cx="520" cy="57"  r="3.5"/><circle cx="530" cy="60"  r="3.5"/>
+      </g>
+      <g fill="#c8841e" filter="url(#rough)">
+        <ellipse cx="160" cy="160" rx="8" ry="7"/><circle cx="152" cy="150" r="2.5"/><circle cx="160" cy="147" r="2.5"/><circle cx="168" cy="150" r="2.5"/>
+        <ellipse cx="270" cy="128" rx="10" ry="9"/><circle cx="261" cy="116" r="3"/><circle cx="270" cy="113" r="3"/><circle cx="279" cy="116" r="3"/>
+        <ellipse cx="390" cy="53"  rx="8" ry="7"/><circle cx="382" cy="43"  r="2.5"/><circle cx="390" cy="40"  r="2.5"/><circle cx="398" cy="43"  r="2.5"/>
+        <ellipse cx="480" cy="143" rx="6" ry="5"/><circle cx="474" cy="135" r="2"/><circle cx="480" cy="133" r="2"/><circle cx="486" cy="135" r="2"/>
+      </g>
+      <text x="80"  y="14" font-size="11" fill="#8b2f1a">bison</text>
+      <text x="150" y="14" font-size="11" fill="#c8841e">deer</text>
+    </svg>
+  </div>
+
+  <div class="cell col-luminoso">
+    <div class="demo-label" style="margin-bottom:6px">distance vs time of day · dot size = group count</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="11" fill="#785030">far</text>
+      <text x="38" y="116" text-anchor="end" font-size="11" fill="#785030">mid</text>
+      <text x="185" y="200" text-anchor="middle" font-size="11" fill="#785030">dawn</text>
+      <text x="370" y="200" text-anchor="middle" font-size="11" fill="#785030">sun</text>
+      <text x="555" y="200" text-anchor="middle" font-size="11" fill="#785030">dark</text>
+      <g fill="#b03820" filter="url(#rough)">
+        <ellipse cx="120" cy="138" rx="9" ry="8"/><circle cx="111" cy="127" r="3"/><circle cx="120" cy="124" r="3"/><circle cx="129" cy="127" r="3"/>
+        <ellipse cx="210" cy="88"  rx="12" ry="10"/><circle cx="199" cy="74"  r="4"/><circle cx="210" cy="71"  r="4"/><circle cx="221" cy="74"  r="4"/>
+        <ellipse cx="310" cy="58"  rx="9" ry="8"/><circle cx="301" cy="47"  r="3"/><circle cx="310" cy="44"  r="3"/><circle cx="319" cy="47"  r="3"/>
+        <ellipse cx="430" cy="108" rx="7" ry="6"/><circle cx="423" cy="99" r="2.5"/><circle cx="430" cy="96"  r="2.5"/><circle cx="437" cy="99" r="2.5"/>
+        <ellipse cx="520" cy="73"  rx="11" ry="9"/><circle cx="510" cy="60"  r="3.5"/><circle cx="520" cy="57"  r="3.5"/><circle cx="530" cy="60"  r="3.5"/>
+      </g>
+      <g fill="#c8841e" filter="url(#rough)">
+        <ellipse cx="160" cy="160" rx="8" ry="7"/><circle cx="152" cy="150" r="2.5"/><circle cx="160" cy="147" r="2.5"/><circle cx="168" cy="150" r="2.5"/>
+        <ellipse cx="270" cy="128" rx="10" ry="9"/><circle cx="261" cy="116" r="3"/><circle cx="270" cy="113" r="3"/><circle cx="279" cy="116" r="3"/>
+        <ellipse cx="390" cy="53"  rx="8" ry="7"/><circle cx="382" cy="43"  r="2.5"/><circle cx="390" cy="40"  r="2.5"/><circle cx="398" cy="43"  r="2.5"/>
+        <ellipse cx="480" cy="143" rx="6" ry="5"/><circle cx="474" cy="135" r="2"/><circle cx="480" cy="133" r="2"/><circle cx="486" cy="135" r="2"/>
+      </g>
+      <text x="80"  y="14" font-size="11" fill="#b03820">bison</text>
+      <text x="150" y="14" font-size="11" fill="#c8841e">deer</text>
+    </svg>
+  </div>
+
+  <div class="cell col-moderno">
+    <div class="demo-label" style="margin-bottom:6px">distance vs time of day · dot size = group count</div>
+    <svg class="chart-svg" viewBox="0 0 620 220">
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#18120a" stroke-width="2" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="180" x2="590" y2="180" stroke="#18120a" stroke-width="2" stroke-linecap="round" filter="url(#rough)"/>
+      <text x="38" y="52"  text-anchor="end" font-size="11" fill="#50341a">far</text>
+      <text x="38" y="116" text-anchor="end" font-size="11" fill="#50341a">mid</text>
+      <text x="185" y="200" text-anchor="middle" font-size="11" fill="#50341a">dawn</text>
+      <text x="370" y="200" text-anchor="middle" font-size="11" fill="#50341a">sun</text>
+      <text x="555" y="200" text-anchor="middle" font-size="11" fill="#50341a">dark</text>
+      <g fill="#be3e1c" filter="url(#rough)">
+        <ellipse cx="120" cy="138" rx="9" ry="8"/><circle cx="111" cy="127" r="3"/><circle cx="120" cy="124" r="3"/><circle cx="129" cy="127" r="3"/>
+        <ellipse cx="210" cy="88"  rx="12" ry="10"/><circle cx="199" cy="74"  r="4"/><circle cx="210" cy="71"  r="4"/><circle cx="221" cy="74"  r="4"/>
+        <ellipse cx="310" cy="58"  rx="9" ry="8"/><circle cx="301" cy="47"  r="3"/><circle cx="310" cy="44"  r="3"/><circle cx="319" cy="47"  r="3"/>
+        <ellipse cx="430" cy="108" rx="7" ry="6"/><circle cx="423" cy="99" r="2.5"/><circle cx="430" cy="96"  r="2.5"/><circle cx="437" cy="99" r="2.5"/>
+        <ellipse cx="520" cy="73"  rx="11" ry="9"/><circle cx="510" cy="60"  r="3.5"/><circle cx="520" cy="57"  r="3.5"/><circle cx="530" cy="60"  r="3.5"/>
+      </g>
+      <g fill="#c88c00" filter="url(#rough)">
+        <ellipse cx="160" cy="160" rx="8" ry="7"/><circle cx="152" cy="150" r="2.5"/><circle cx="160" cy="147" r="2.5"/><circle cx="168" cy="150" r="2.5"/>
+        <ellipse cx="270" cy="128" rx="10" ry="9"/><circle cx="261" cy="116" r="3"/><circle cx="270" cy="113" r="3"/><circle cx="279" cy="116" r="3"/>
+        <ellipse cx="390" cy="53"  rx="8" ry="7"/><circle cx="382" cy="43"  r="2.5"/><circle cx="390" cy="40"  r="2.5"/><circle cx="398" cy="43"  r="2.5"/>
+        <ellipse cx="480" cy="143" rx="6" ry="5"/><circle cx="474" cy="135" r="2"/><circle cx="480" cy="133" r="2"/><circle cx="486" cy="135" r="2"/>
+      </g>
+      <text x="80"  y="14" font-size="11" fill="#be3e1c">bison</text>
+      <text x="150" y="14" font-size="11" fill="#c88c00">deer</text>
+    </svg>
+  </div>
+
+  <!-- ────────────── VIII. PIE CHART ────────────── -->
+  <div class="section-head">VIII — Stone Disk (Pie)</div>
+
+  <div class="cell col-cueva">
+    <div class="demo-label" style="margin-bottom:8px">hunt share by beast</div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <svg viewBox="0 0 220 220" width="160" height="160" style="flex:0 0 auto">
+        <circle cx="110" cy="110" r="90" fill="url(#disk-c)" stroke="#1a120a" stroke-width="3" filter="url(#rough)"/>
+        <path d="M110,110 L200,110 A90,90 0 0,1 37.2,162.9 Z" fill="#8b2f1a" opacity=".85" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L37.2,162.9 A90,90 0 0,1 82.2,24.4 Z" fill="#c8841e" opacity=".85" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L82.2,24.4 A90,90 0 0,1 182.8,57.1 Z" fill="#1a120a" opacity=".75" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L182.8,57.1 A90,90 0 0,1 200,110 Z" fill="#efe3c7" opacity=".7" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+      </svg>
+      <div style="font-family:var(--font-stamp);font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;gap:7px;">
+        <span style="color:#8b2f1a">■ bison 40%</span>
+        <span style="color:#c8841e">■ deer 30%</span>
+        <span style="color:#efe3c7">■ horse 20%</span>
+        <span style="color:#d9cca7">■ elk 10%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cell col-luminoso">
+    <div class="demo-label" style="margin-bottom:8px">hunt share by beast</div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <svg viewBox="0 0 220 220" width="160" height="160" style="flex:0 0 auto">
+        <circle cx="110" cy="110" r="90" fill="url(#disk-l)" stroke="#1a120a" stroke-width="3" filter="url(#rough)"/>
+        <path d="M110,110 L200,110 A90,90 0 0,1 37.2,162.9 Z" fill="#b03820" opacity=".85" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L37.2,162.9 A90,90 0 0,1 82.2,24.4 Z" fill="#c8841e" opacity=".85" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L82.2,24.4 A90,90 0 0,1 182.8,57.1 Z" fill="#1a120a" opacity=".75" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L182.8,57.1 A90,90 0 0,1 200,110 Z" fill="#f2eadc" opacity=".7" stroke="#1a120a" stroke-width="2" filter="url(#rough)"/>
+      </svg>
+      <div style="font-family:var(--font-stamp);font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;gap:7px;">
+        <span style="color:#b03820">■ bison 40%</span>
+        <span style="color:#c8841e">■ deer 30%</span>
+        <span style="color:#1a120a">■ horse 20%</span>
+        <span style="color:#785030">■ elk 10%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cell col-moderno">
+    <div class="demo-label" style="margin-bottom:8px">hunt share by beast</div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <svg viewBox="0 0 220 220" width="160" height="160" style="flex:0 0 auto">
+        <circle cx="110" cy="110" r="90" fill="url(#disk-m)" stroke="#18120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L200,110 A90,90 0 0,1 37.2,162.9 Z" fill="#be3e1c" opacity=".85" stroke="#18120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L37.2,162.9 A90,90 0 0,1 82.2,24.4 Z" fill="#c88c00" opacity=".85" stroke="#18120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L82.2,24.4 A90,90 0 0,1 182.8,57.1 Z" fill="#18120a" opacity=".75" stroke="#18120a" stroke-width="2" filter="url(#rough)"/>
+        <path d="M110,110 L182.8,57.1 A90,90 0 0,1 200,110 Z" fill="#efe8d8" opacity=".7" stroke="#18120a" stroke-width="2" filter="url(#rough)"/>
+      </svg>
+      <div style="font-family:var(--font-stamp);font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;gap:7px;">
+        <span style="color:#be3e1c">■ bison 40%</span>
+        <span style="color:#c88c00">■ deer 30%</span>
+        <span style="color:#18120a">■ horse 20%</span>
+        <span style="color:#50341a">■ elk 10%</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- .demo-grid -->
+</body>
+</html>

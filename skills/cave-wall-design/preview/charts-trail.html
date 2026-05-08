@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Chart — trail line</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<link rel="stylesheet" href="../assets/diagrams.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:300px;padding:26px 30px;position:relative;box-sizing:border-box;}
+  .cv-wall{position:absolute;inset:0;}
+  .stage{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="stage">
+    <svg width="620" height="230" viewBox="0 0 620 230">
+
+      <!-- axes -->
+      <line x1="50" y1="20" x2="50" y2="185" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="185" x2="590" y2="185" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+
+      <!-- y ticks + labels -->
+      <line x1="42" y1="50"  x2="58" y2="50"  stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="42" y1="100" x2="58" y2="100" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="42" y1="150" x2="58" y2="150" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="38" y="54"  text-anchor="end" font-family="'Rye','Courier New',monospace" font-size="12" letter-spacing=".04em" fill="#d9cca7">30</text>
+      <text x="38" y="104" text-anchor="end" font-family="'Rye','Courier New',monospace" font-size="12" letter-spacing=".04em" fill="#d9cca7">20</text>
+      <text x="38" y="154" text-anchor="end" font-family="'Rye','Courier New',monospace" font-size="12" letter-spacing=".04em" fill="#d9cca7">10</text>
+
+      <!-- x ticks + labels -->
+      <line x1="120" y1="183" x2="120" y2="193" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="230" y1="183" x2="230" y2="193" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="340" y1="183" x2="340" y2="193" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="450" y1="183" x2="450" y2="193" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="560" y1="183" x2="560" y2="193" stroke="#1a120a" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="120" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">dawn</text>
+      <text x="230" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">mid</text>
+      <text x="340" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">sun</text>
+      <text x="450" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">dusk</text>
+      <text x="560" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">dark</text>
+
+      <!-- axis titles -->
+      <text x="320" y="225" text-anchor="middle" font-family="'Finger Paint',cursive" font-size="12" fill="#d9cca7">time</text>
+      <text x="18" y="110" text-anchor="middle" font-family="'Finger Paint',cursive" font-size="12" fill="#d9cca7" transform="rotate(-90,18,110)">beasts seen</text>
+
+      <!-- hunt trail path (red ochre, rough) -->
+      <path d="M120,155 L180,130 L230,118 L290,85 L340,72 L390,80 L450,58 L510,70 L560,90" fill="none" stroke="#8b2f1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>
+
+      <!-- paw data points — simplified inline -->
+      <g fill="#8b2f1a" filter="url(#rough)">
+        <!-- each point: small filled ellipse body + toe dots -->
+        <ellipse cx="120" cy="155" rx="7" ry="6"/><circle cx="113" cy="147" r="2.5"/><circle cx="120" cy="144" r="2.5"/><circle cx="127" cy="147" r="2.5"/>
+        <ellipse cx="230" cy="118" rx="7" ry="6"/><circle cx="223" cy="110" r="2.5"/><circle cx="230" cy="107" r="2.5"/><circle cx="237" cy="110" r="2.5"/>
+        <ellipse cx="340" cy="72"  rx="7" ry="6"/><circle cx="333" cy="64"  r="2.5"/><circle cx="340" cy="61"  r="2.5"/><circle cx="347" cy="64"  r="2.5"/>
+        <ellipse cx="450" cy="58"  rx="7" ry="6"/><circle cx="443" cy="50"  r="2.5"/><circle cx="450" cy="47"  r="2.5"/><circle cx="457" cy="50"  r="2.5"/>
+        <ellipse cx="560" cy="90"  rx="7" ry="6"/><circle cx="553" cy="82"  r="2.5"/><circle cx="560" cy="79"  r="2.5"/><circle cx="567" cy="82"  r="2.5"/>
+      </g>
+
+      <!-- inline series label -->
+      <text x="565" y="75" font-family="'Rye','Courier New',monospace" font-size="11" fill="#8b2f1a">herd</text>
+    </svg>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Diagram — flow</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<link rel="stylesheet" href="../assets/diagrams.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:300px;padding:26px 30px;position:relative;box-sizing:border-box;}
+  .cv-wall{position:absolute;inset:0;}
+  .stage{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+  .title{font-family:var(--font-stamp);font-size:15px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;margin-bottom:4px;}
+  svg.diagram{overflow:visible;}
+  .node-label{font-family:var(--font-scrawl);font-size:14px;fill:var(--bone);}
+  .chip{font-family:var(--font-stamp);font-size:11px;letter-spacing:.06em;text-transform:uppercase;fill:var(--bone-dim);}
+  .dashed-label{font-family:var(--font-scrawl);font-size:11px;fill:var(--bone-dim);}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<!-- rough + stone-disk gradient defs inlined -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <marker id="cv-arrow" viewBox="0 0 12 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L12,5 L0,10 Z" fill="#1a120a"/></marker>
+    <marker id="cv-arrow-open" viewBox="0 0 14 10" refX="12" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L13,5 L1,9" stroke="#1a120a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <radialGradient id="cv-stone-disk" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#efe3c7"/>
+      <stop offset="70%" stop-color="#c8841e"/>
+      <stop offset="100%" stop-color="#6b4a2e"/>
+    </radialGradient>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="stage">
+    <div class="title">path of the hunt</div>
+    <!-- main flow: box → circle → box, plus one dashed branch -->
+    <svg class="diagram" width="580" height="180" viewBox="0 0 580 180">
+      <!-- nodes -->
+      <rect x="10" y="65" width="130" height="50" fill="transparent" stroke="#1a120a" stroke-width="3" filter="url(#rough)"/>
+      <text x="75" y="97" text-anchor="middle" class="node-label">gather</text>
+
+      <circle cx="295" cy="90" r="38" fill="url(#cv-stone-disk)" stroke="#1a120a" stroke-width="3" filter="url(#rough)"/>
+      <text x="295" y="95" text-anchor="middle" class="node-label" fill="#1a120a">plan</text>
+
+      <rect x="440" y="65" width="130" height="50" fill="transparent" stroke="#8b2f1a" stroke-width="3" filter="url(#rough)"/>
+      <text x="505" y="97" text-anchor="middle" class="node-label" fill="#efe3c7">strike</text>
+
+      <!-- main edges -->
+      <line x1="140" y1="90" x2="254" y2="90" stroke="#1a120a" stroke-width="3.5" stroke-linecap="round" filter="url(#rough)" marker-end="url(#cv-arrow)"/>
+      <line x1="333" y1="90" x2="437" y2="90" stroke="#1a120a" stroke-width="3.5" stroke-linecap="round" filter="url(#rough)" marker-end="url(#cv-arrow)"/>
+
+      <!-- dashed branch downward from plan -->
+      <line x1="295" y1="128" x2="295" y2="162" stroke="#1a120a" stroke-width="2.5" stroke-dasharray="6 8" stroke-linecap="round" filter="url(#rough)" marker-end="url(#cv-arrow-open)"/>
+      <text x="295" y="176" text-anchor="middle" class="dashed-label">if lost — start again</text>
+
+      <!-- edge chips -->
+      <text x="197" y="82" text-anchor="middle" class="chip">track</text>
+      <text x="385" y="82" text-anchor="middle" class="chip">move</text>
+    </svg>
+  </div>
+</div>
+</body></html>

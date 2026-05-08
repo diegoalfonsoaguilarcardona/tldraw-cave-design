@@ -1,0 +1,178 @@
+/* Cave Wall diagram & chart primitives.
+   Pair with colors_and_type.css, cave-wall.css, and pictographs.svg.html.
+   All rough-filter references expect #rough to be in scope via pictographs.svg.html. */
+
+/* ---- Diagram nodes ---- */
+
+.cv-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 22px;
+  border: 3px solid var(--charcoal);
+  background: transparent;
+  font-family: var(--font-scrawl);
+  font-size: 20px;
+  color: var(--fg);
+  filter: url(#rough);
+  /* never rounded — straight edges only */
+  border-radius: 0;
+}
+
+.cv-node--parchment {
+  background: radial-gradient(ellipse at 30% 20%, var(--parchment-light), var(--parchment-mid) 70%, var(--parchment-dark));
+  color: var(--parchment-fg);
+  border-color: var(--border-warm);
+  box-shadow: inset 0 0 20px var(--shadow-warm);
+}
+
+.cv-node--red {
+  border-color: var(--ochre-red);
+  color: var(--bone);
+}
+
+/* Permitted exception: semantic "state" circles in flow diagrams only */
+.cv-node--circle {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 18px;
+  background: radial-gradient(circle at 35% 30%, var(--bone), var(--ochre-yellow) 70%, var(--stone-3));
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+
+/* ---- SVG edges ---- */
+
+.cv-edge {
+  stroke: var(--charcoal);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  fill: none;
+  filter: url(#rough);
+}
+
+.cv-edge--red   { stroke: var(--ochre-red); }
+.cv-edge--ochre { stroke: var(--ochre-yellow); }
+.cv-edge--dashed { stroke-dasharray: 6 8; }
+
+/* ---- Chart bars ---- */
+
+.cv-bar {
+  fill: var(--ochre-red);
+  stroke: var(--ochre-deep);
+  stroke-width: 2;
+  filter: url(#rough);
+  /* border-radius intentionally omitted — SVG rect has no radius */
+}
+
+.cv-bar--accent { fill: var(--ochre-yellow); stroke: var(--ochre-yellow); }
+.cv-bar--dark   { fill: var(--charcoal); stroke: var(--stone-0); }
+.cv-bar--bone   { fill: var(--bone); stroke: var(--bone-dim); }
+
+/* ---- Chart axes ---- */
+
+.cv-axis {
+  stroke: var(--charcoal);
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+  filter: url(#rough);
+}
+
+.cv-tick {
+  stroke: var(--charcoal);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.cv-axis-label {
+  font-family: var(--font-stamp);
+  font-size: 16px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  fill: var(--fg);
+}
+
+.cv-axis-title {
+  font-family: var(--font-scrawl);
+  font-size: 17px;
+  fill: var(--fg-dim);
+}
+
+/* ---- Stone-disk pie ---- */
+
+.cv-pie {
+  filter: url(#rough);
+}
+
+.cv-pie__disk {
+  /* base stone circle — wedge paths sit on top with multiply blend */
+  fill: url(#cv-stone-disk);
+  stroke: var(--charcoal);
+  stroke-width: 3;
+}
+
+.cv-pie__wedge {
+  stroke: var(--charcoal);
+  stroke-width: 4;
+  mix-blend-mode: multiply;
+  opacity: .82;
+}
+
+.cv-pie__crack {
+  stroke: var(--charcoal);
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+}
+
+/* ---- Trail / line chart ---- */
+
+.cv-trail {
+  stroke: var(--ochre-red);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  filter: url(#rough);
+}
+
+.cv-trail--accent { stroke: var(--ochre-yellow); }
+.cv-trail--dark   { stroke: var(--charcoal); }
+.cv-trail--bone   { stroke: var(--bone); }
+
+.cv-trail-dot {
+  fill: var(--ochre-red);
+  filter: url(#rough);
+}
+
+.cv-trail-dot--accent { fill: var(--ochre-yellow); }
+.cv-trail-dot--dark   { fill: var(--charcoal); }
+.cv-trail-dot--bone   { fill: var(--bone); }
+
+.cv-trail-area {
+  fill: var(--ochre-red);
+  opacity: .12;
+  filter: url(#rough);
+}
+
+.cv-trail-area--accent { fill: var(--ochre-yellow); }
+.cv-trail-area--dark   { fill: var(--charcoal); }
+.cv-trail-area--bone   { fill: var(--bone); }
+
+/* ---- Scatter dots ---- */
+
+.cv-scatter-dot {
+  filter: url(#rough);
+  fill: var(--ochre-red);
+  stroke: none;
+}
+
+.cv-scatter-dot--sm { r: 5; }   /* use as SVG attribute or CSS if browser supports it */
+.cv-scatter-dot--md { r: 9; }
+.cv-scatter-dot--lg { r: 14; }
+
+.cv-scatter-dot--accent { fill: var(--ochre-yellow); }
+.cv-scatter-dot--dark   { fill: var(--charcoal); }
+.cv-scatter-dot--bone   { fill: var(--bone); }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Pictograph library — fauna</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;padding:24px 30px;display:flex;flex-direction:column;gap:14px;}
+  .row{display:flex;gap:16px;align-items:center;justify-content:space-around;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .name{font-family:var(--font-stamp);font-size:12px;letter-spacing:.08em;color:var(--bone);text-transform:uppercase;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  <symbol id="pg-bison" viewBox="0 0 200 120"><path d="M20,80 C30,50 55,40 80,42 C85,30 100,28 110,35 C125,30 145,35 160,50 C175,55 180,70 175,85 C170,95 150,95 145,88 L140,100 L135,88 L100,90 L95,100 L90,88 L60,90 L55,102 L50,88 C40,90 25,88 20,80 Z" fill="currentColor" filter="url(#rough)"/><circle cx="155" cy="62" r="3" fill="rgba(0,0,0,.6)"/><path d="M160,48 Q165,40 172,45 M155,45 Q158,38 165,40" stroke="currentColor" stroke-width="3" fill="none"/></symbol>
+  <symbol id="pg-mammoth" viewBox="0 0 220 150"><path d="M30,95 C40,45 80,30 115,35 C155,30 185,50 195,80 C200,95 195,110 180,108 L175,125 L168,108 L155,108 L152,125 L145,108 L85,108 L82,125 L75,108 L58,108 L55,125 L48,108 C35,110 28,105 30,95 Z" fill="currentColor" filter="url(#rough)"/><path d="M190,78 C200,70 210,78 205,95 C200,112 195,110 192,100 Q195,90 190,78 Z" fill="currentColor"/><path d="M145,108 Q150,125 140,135 M165,108 Q170,128 160,138" stroke="currentColor" stroke-width="4" fill="none"/><circle cx="180" cy="60" r="3" fill="rgba(0,0,0,.7)"/></symbol>
+  <symbol id="pg-deer" viewBox="0 0 180 160"><path d="M20,110 L25,75 C25,70 32,68 36,72 L40,95 L110,95 L118,70 C120,65 128,65 130,70 L135,105 L145,108 L147,115 L140,118 L137,130 L130,132 L128,120 L55,120 L52,135 L45,137 L42,122 L30,120 L25,130 L18,128 Z" fill="currentColor" filter="url(#rough)"/><path d="M35,70 L25,40 M35,70 L20,50 M35,70 L40,35 M125,68 L115,35 M125,68 L135,40 M125,68 L130,30" stroke="currentColor" stroke-width="3" fill="none"/><circle cx="130" cy="78" r="2.5" fill="rgba(0,0,0,.6)"/></symbol>
+  <symbol id="pg-horse" viewBox="0 0 200 130"><path d="M20,95 C22,70 35,58 65,55 C70,40 80,32 95,38 C115,30 140,35 160,50 C172,58 178,70 175,85 L178,105 L170,108 L165,95 L135,95 L132,110 L125,112 L122,95 L65,95 L62,110 L55,112 L52,95 L35,95 L32,108 L24,108 Z" fill="currentColor" filter="url(#rough)"/><path d="M90,40 L85,25 M100,38 L102,22" stroke="currentColor" stroke-width="3" fill="none"/><circle cx="155" cy="62" r="2.5" fill="rgba(0,0,0,.7)"/></symbol>
+</defs></svg>
+<div class="wrap">
+  <div class="row">
+    <div class="cell"><svg width="110" height="66" style="color:var(--bone)"><use href="#pg-bison"/></svg><div class="name">Bison</div></div>
+    <div class="cell"><svg width="130" height="88" style="color:var(--bone)"><use href="#pg-mammoth"/></svg><div class="name">Mammoth</div></div>
+    <div class="cell"><svg width="110" height="98" style="color:var(--bone)"><use href="#pg-deer"/></svg><div class="name">Deer</div></div>
+    <div class="cell"><svg width="120" height="78" style="color:var(--bone)"><use href="#pg-horse"/></svg><div class="name">Horse</div></div>
+  </div>
+</div>
+</body></html>

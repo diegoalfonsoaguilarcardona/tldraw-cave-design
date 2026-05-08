@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Cave palette — pigments</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box;}
+  .row{display:flex;gap:10px;justify-content:space-between;}
+  .cell{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .swatch{width:72px;height:72px;border-radius:50%;box-shadow:inset -12px -16px 22px rgba(0,0,0,.35), inset 12px 12px 20px rgba(255,255,255,.08);}
+  .name{font-family:var(--font-stamp);font-size:12px;letter-spacing:.05em;color:var(--bone);text-transform:uppercase;text-align:center;white-space:nowrap;}
+  .hex{font-family:var(--font-stamp);font-size:11px;color:var(--bone-dim);}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
+<div class="wrap">
+  <div class="row">
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #d85a3a, #8b2f1a 60%, #4a160a);"></div><div class="name">Red Ochre</div><div class="hex">#8B2F1A</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #a1371e, #5d1d10 60%, #2d0c06);"></div><div class="name">Deep Ochre</div><div class="hex">#5D1D10</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #e5b24a, #c8841e 60%, #6b4612);"></div><div class="name">Yellow Ochre</div><div class="hex">#C8841E</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #f0c670, #e1a94a 60%, #8a5c1a);"></div><div class="name">Light Ochre</div><div class="hex">#E1A94A</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #4a3525, #1a120a 60%, #000);"></div><div class="name">Charcoal</div><div class="hex">#1A120A</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #f5e8cc, #efe3c7 60%, #8a6a44);"></div><div class="name">Bone</div><div class="hex">#EFE3C7</div></div>
+    <div class="cell"><div class="swatch" style="background:radial-gradient(circle at 30% 30%, #ffb070, #ff7a2b 60%, #8b2f1a);"></div><div class="name">Ember</div><div class="hex">#FF7A2B</div></div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Tally & count</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);color:var(--bone);}
+  .wrap{width:700px;padding:24px 30px;display:flex;flex-direction:column;gap:18px;}
+  .label{font-family:var(--font-stamp);font-size:12px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;}
+  .row{display:flex;gap:40px;align-items:flex-end;}
+  .tally{display:inline-flex;gap:6px;align-items:flex-end;position:relative;}
+  .tally span{display:block;width:3px;height:26px;background:var(--bone);}
+  .tally span.slash{width:26px;height:3px;align-self:center;transform:rotate(-20deg);margin-left:-30px;}
+  .note{font-family:var(--font-scrawl);font-size:20px;color:var(--bone);}
+  .dotcount{display:flex;gap:8px;align-items:center;}
+  .dotcount i{width:10px;height:10px;background:var(--ochre-red);border-radius:50%;display:block;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<div class="wrap">
+  <div class="label">Tally marks</div>
+  <div class="row">
+    <div><div class="tally"><span></span><span></span><span></span><span></span><span class="slash"></span></div><div class="note">five</div></div>
+    <div><div class="tally"><span></span><span></span><span></span><span></span><span class="slash"></span><span></span><span></span><span></span></div><div class="note">eight</div></div>
+    <div><div class="tally"><span></span><span></span><span></span><span></span><span class="slash"></span><span></span><span></span><span></span><span></span><span></span><span class="slash"></span><span></span></div><div class="note">eleven</div></div>
+  </div>
+  <div class="label">Dot count</div>
+  <div class="dotcount"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="note">moons since hunt</span></div>
+</div>
+</body></html>

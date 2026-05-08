@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Chart — tally</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<link rel="stylesheet" href="../assets/diagrams.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:300px;padding:26px 30px;position:relative;box-sizing:border-box;}
+  .cv-wall{position:absolute;inset:0;}
+  .stage{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+  .chart-title{font-family:var(--font-stamp);font-size:15px;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase;margin-bottom:4px;}
+  .row{display:flex;align-items:center;gap:10px;}
+  .row-label{font-family:var(--font-scrawl);font-size:15px;color:var(--bone);width:82px;text-align:right;}
+  svg.tally-row{overflow:visible;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="stage">
+    <div class="chart-title">beasts counted this moon</div>
+
+    <!-- bison row — 3 tally groups = 15 -->
+    <div class="row">
+      <span class="row-label">bison</span>
+      <svg class="tally-row" width="290" height="32" viewBox="0 0 290 32">
+        <!-- group 1 -->
+        <path d="M6,4 L6,28 M18,4 L18,28 M30,4 L30,28 M42,4 L42,28 M2,22 L46,10" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <!-- group 2 -->
+        <path d="M66,4 L66,28 M78,4 L78,28 M90,4 L90,28 M102,4 L102,28 M62,22 L106,10" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <!-- group 3 -->
+        <path d="M126,4 L126,28 M138,4 L138,28 M150,4 L150,28 M162,4 L162,28 M122,22 L166,10" stroke="#8b2f1a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <text x="182" y="21" font-family="'Rye','Courier New',monospace" font-size="14" letter-spacing=".06em" fill="#efe3c7">= 15</text>
+      </svg>
+    </div>
+
+    <!-- deer row — 2 groups = 10 -->
+    <div class="row">
+      <span class="row-label">deer</span>
+      <svg class="tally-row" width="290" height="32" viewBox="0 0 290 32">
+        <path d="M6,4 L6,28 M18,4 L18,28 M30,4 L30,28 M42,4 L42,28 M2,22 L46,10" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <path d="M66,4 L66,28 M78,4 L78,28 M90,4 L90,28 M102,4 L102,28 M62,22 L106,10" stroke="#c8841e" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <text x="122" y="21" font-family="'Rye','Courier New',monospace" font-size="14" letter-spacing=".06em" fill="#efe3c7">= 10</text>
+      </svg>
+    </div>
+
+    <!-- mammoth row — 1 group = 5 -->
+    <div class="row">
+      <span class="row-label">mammoth</span>
+      <svg class="tally-row" width="290" height="32" viewBox="0 0 290 32">
+        <path d="M6,4 L6,28 M18,4 L18,28 M30,4 L30,28 M42,4 L42,28 M2,22 L46,10" stroke="#1a120a" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#rough)"/>
+        <text x="62" y="21" font-family="'Rye','Courier New',monospace" font-size="14" letter-spacing=".06em" fill="#efe3c7">= 5</text>
+      </svg>
+    </div>
+  </div>
+</div>
+</body></html>

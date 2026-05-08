@@ -1,0 +1,115 @@
+/* Cave wall theme — cueva style */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Finger+Paint&family=Rye&display=swap');
+
+/* ------------------------------------------------------------------ */
+/* Token overrides — applies to both light and dark tldraw themes      */
+/* ------------------------------------------------------------------ */
+.cv-tldraw .tl-theme__light,
+.cv-tldraw .tl-theme__dark {
+	/* Canvas */
+	--tl-color-background: #3b2a1b;
+	--tl-color-grid: #6b4a2e;
+	/* UI panels */
+	--tl-color-panel: rgba(43, 30, 18, 0.97);
+	--tl-color-panel-contrast: rgba(108, 74, 46, 0.7);
+	--tl-color-panel-overlay: rgba(43, 30, 18, 0.9);
+	--tl-color-panel-transparent: rgba(43, 30, 18, 0);
+	--tl-color-low: rgba(26, 18, 10, 0.55);
+	--tl-color-low-border: rgba(108, 74, 46, 0.45);
+	--tl-color-divider: rgba(108, 74, 46, 0.45);
+	--tl-color-hint: rgba(255, 255, 255, 0.06);
+	--tl-color-overlay: rgba(0, 0, 0, 0.6);
+	--tl-color-muted-none: rgba(255, 255, 255, 0);
+	--tl-color-muted-0: rgba(255, 255, 255, 0.02);
+	--tl-color-muted-1: rgba(255, 255, 255, 0.09);
+	--tl-color-muted-2: rgba(255, 255, 255, 0.05);
+	/* Text */
+	--tl-color-text: #efe3c7;
+	--tl-color-text-0: #efe3c7;
+	--tl-color-text-1: #d9cca7;
+	--tl-color-text-3: #b08a5c;
+	--tl-color-text-shadow: #1a120a;
+	--tl-color-text-highlight: #c8841e;
+	--tl-color-text-highlight-p3: #c8841e;
+	/* Selection */
+	--tl-color-selection-stroke: #8b2f1a;
+	--tl-color-selection-fill: rgba(139, 47, 26, 0.22);
+	--tl-color-selected: #8b2f1a;
+	--tl-color-selected-contrast: #efe3c7;
+	/* Interactive */
+	--tl-color-primary: #8b2f1a;
+	--tl-color-focus: #c8841e;
+	--tl-color-tooltip: #efe3c7;
+	/* Status — all mapped to earth tones */
+	--tl-color-success: #c8841e;
+	--tl-color-info: #7a4820;
+	--tl-color-warning: #e05a18;
+	--tl-color-danger: #5d1d10;
+	/* Shadows — warm earthy */
+	--tl-shadow-1: 0px 1px 2px rgba(0, 0, 0, 0.55), 0px 1px 3px rgba(0, 0, 0, 0.3);
+	--tl-shadow-2:
+		0px 1px 3px rgba(0, 0, 0, 0.7), 0px 2px 6px rgba(0, 0, 0, 0.4),
+		inset 0px 0px 0px 1px rgba(108, 74, 46, 0.55);
+	--tl-shadow-3:
+		0px 1px 3px rgba(0, 0, 0, 0.65), 0px 2px 12px rgba(0, 0, 0, 0.5),
+		inset 0px 0px 0px 1px rgba(108, 74, 46, 0.55);
+	--tl-shadow-4:
+		0px 0px 3px rgba(0, 0, 0, 0.5), 0px 5px 4px rgba(0, 0, 0, 0.4), 0px 2px 16px rgba(0, 0, 0, 0.3),
+		inset 0px 0px 0px 1px rgba(108, 74, 46, 0.55);
+}
+
+/* ------------------------------------------------------------------ */
+/* Cave wall canvas background                                         */
+/* ------------------------------------------------------------------ */
+
+/* Main gradient: fire-glow at center + rock highlight + stone layers */
+.cv-tldraw .tl-background {
+	background:
+		radial-gradient(ellipse 85% 60% at 50% 55%, rgba(255, 160, 60, 0.14), transparent 60%),
+		radial-gradient(circle at 22% 18%, #b08a5c, #6b4a2e 40%, #3b2a1b 78%),
+		linear-gradient(175deg, #6b4a2e, #3b2a1b 65%, #2a1d12);
+}
+
+/* Rock texture — two SVG fractal-noise layers blended multiply */
+.cv-tldraw .tl-background::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image:
+		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.25  0 0 0 0 0.1  0 0 0 .35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+	mix-blend-mode: multiply;
+	opacity: 0.85;
+}
+
+/* Torch vignette — darkens edges, ember glows in corners */
+.cv-tldraw .tl-background::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		radial-gradient(
+			ellipse 72% 58% at 50% 50%,
+			transparent 38%,
+			rgba(0, 0, 0, 0.52) 82%,
+			rgba(0, 0, 0, 0.88) 100%
+		),
+		radial-gradient(circle at 7% 93%, rgba(255, 120, 40, 0.18), transparent 28%),
+		radial-gradient(circle at 93% 7%, rgba(255, 120, 40, 0.14), transparent 28%);
+}
+
+/* ------------------------------------------------------------------ */
+/* UI chrome — stamp font on labels, subtle border on menus           */
+/* ------------------------------------------------------------------ */
+
+.cv-tldraw .tlui-button__label {
+	font-family: 'Rye', 'Courier New', serif;
+	letter-spacing: 0.03em;
+}
+
+/* Ochre selection ring around color/font swatch active states */
+.cv-tldraw .tlui-button[data-state='checked'] {
+	outline-color: #c8841e;
+}

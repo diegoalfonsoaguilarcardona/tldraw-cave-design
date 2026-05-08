@@ -1,0 +1,116 @@
+/* Cave Wall background + utility styles.
+   Pair with colors_and_type.css and the pictograph defs. */
+
+.cv-wall {
+  background:
+    radial-gradient(ellipse 85% 60% at 50% 55%, var(--wall-glow-color), transparent 60%),
+    radial-gradient(circle at 20% 15%, var(--stone-4), var(--stone-2) 45%, var(--stone-1) 80%),
+    linear-gradient(180deg, var(--stone-2), var(--stone-1) 70%, var(--stone-0));
+  position: relative;
+  overflow: hidden;
+  color: var(--fg);
+}
+
+/* Rock texture — two noise layers (cueva: dark smoky tones) */
+.cv-wall::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.25  0 0 0 0 0.1  0 0 0 .35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: .85;
+}
+
+/* Torch vignette */
+.cv-wall::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, transparent 40%, var(--wall-vignette) 85%, var(--wall-vignette-deep) 100%),
+    radial-gradient(circle at 8% 92%, var(--wall-ember-a), transparent 30%),
+    radial-gradient(circle at 92% 8%, var(--wall-ember-b), transparent 30%);
+}
+
+/* Parchment panel — warm card over wall */
+.cv-parchment {
+  background: radial-gradient(ellipse at 30% 20%, var(--parchment-light), var(--parchment-mid) 70%, var(--parchment-dark));
+  border: 3px solid var(--border-warm);
+  box-shadow: var(--shadow-panel);
+  padding: 30px;
+  position: relative;
+  filter: url(#rough);
+  color: var(--parchment-fg);
+}
+.cv-parchment::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence baseFrequency='.03' numOctaves='3' seed='3'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 .3 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+
+/* Frieze row (pictographs) */
+.cv-frieze {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  color: var(--charcoal);
+  opacity: .75;
+}
+
+/* Chip / label */
+.cv-chip-box {
+  display: inline-block;
+  background: var(--chip-bg);
+  border: 2px solid var(--charcoal);
+  padding: 10px 24px;
+  font-family: var(--font-stamp);
+  font-size: 26px;
+  color: var(--charcoal);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  filter: url(#rough);
+}
+
+/* Painted circular stamp */
+.cv-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-painted);
+  color: var(--ochre-red);
+  border: 4px solid var(--ochre-red);
+  border-radius: 50%;
+  padding: 12px 20px;
+  filter: url(#rough);
+}
+
+/* Button variants */
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-stamp);
+  font-size: 22px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: 3px solid var(--charcoal);
+  background: var(--ochre-yellow);
+  color: var(--charcoal);
+  cursor: pointer;
+  filter: url(#rough);
+  text-decoration: none;
+}
+.cv-btn--red   { background: var(--ochre-red); color: var(--bone); border-color: var(--ochre-deep); }
+.cv-btn--ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+.cv-btn:hover        { background: var(--ochre-yellow-lt); }
+.cv-btn--red:hover   { background: #a1371e; }
+
+/* Pigment dot (color swatch) */
+.cv-pigment {
+  width: 120px; height: 120px; border-radius: 50%;
+  box-shadow: inset -20px -30px 40px rgba(0,0,0,.35), inset 20px 20px 30px rgba(255,255,255,.08);
+  filter: url(#rough);
+}

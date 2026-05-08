@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Chart — scatter</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<link rel="stylesheet" href="../assets/diagrams.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:300px;padding:26px 30px;position:relative;box-sizing:border-box;}
+  .cv-wall{position:absolute;inset:0;}
+  .stage{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="stage">
+    <svg width="620" height="230" viewBox="0 0 620 230">
+
+      <!-- axes -->
+      <line x1="50" y1="20" x2="50" y2="185" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      <line x1="50" y1="185" x2="590" y2="185" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+
+      <!-- y ticks -->
+      <line x1="42" y1="50"  x2="58" y2="50"  stroke="#1a120a" stroke-width="2"/><text x="38" y="54"  text-anchor="end" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">far</text>
+      <line x1="42" y1="117" x2="58" y2="117" stroke="#1a120a" stroke-width="2"/><text x="38" y="121" text-anchor="end" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">mid</text>
+      <!-- x ticks -->
+      <line x1="185" y1="183" x2="185" y2="193" stroke="#1a120a" stroke-width="2"/><text x="185" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">dawn</text>
+      <line x1="370" y1="183" x2="370" y2="193" stroke="#1a120a" stroke-width="2"/><text x="370" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">sun</text>
+      <line x1="555" y1="183" x2="555" y2="193" stroke="#1a120a" stroke-width="2"/><text x="555" y="208" text-anchor="middle" font-family="'Rye','Courier New',monospace" font-size="11" fill="#d9cca7">dark</text>
+
+      <!-- axis titles -->
+      <text x="320" y="225" text-anchor="middle" font-family="'Finger Paint',cursive" font-size="12" fill="#d9cca7">time of day</text>
+      <text x="14" y="110" text-anchor="middle" font-family="'Finger Paint',cursive" font-size="12" fill="#d9cca7" transform="rotate(-90,14,110)">distance</text>
+
+      <!-- scatter dots — paw prints (ellipse body + toe circles) at varying sizes/colors -->
+      <!-- red ochre points -->
+      <g fill="#8b2f1a" filter="url(#rough)">
+        <ellipse cx="120" cy="140" rx="9" ry="8"/><circle cx="111" cy="129" r="3"/><circle cx="120" cy="126" r="3"/><circle cx="129" cy="129" r="3"/>
+        <ellipse cx="210" cy="90"  rx="12" ry="10"/><circle cx="199" cy="76"  r="4"/><circle cx="210" cy="73"  r="4"/><circle cx="221" cy="76"  r="4"/>
+        <ellipse cx="310" cy="60"  rx="9" ry="8"/><circle cx="301" cy="49"  r="3"/><circle cx="310" cy="46"  r="3"/><circle cx="319" cy="49"  r="3"/>
+        <ellipse cx="430" cy="110" rx="7" ry="6"/><circle cx="423" cy="101" r="2.5"/><circle cx="430" cy="98"  r="2.5"/><circle cx="437" cy="101" r="2.5"/>
+        <ellipse cx="520" cy="75"  rx="11" ry="9"/><circle cx="510" cy="62"  r="3.5"/><circle cx="520" cy="59"  r="3.5"/><circle cx="530" cy="62"  r="3.5"/>
+      </g>
+      <!-- yellow ochre points -->
+      <g fill="#c8841e" filter="url(#rough)">
+        <ellipse cx="160" cy="165" rx="8" ry="7"/><circle cx="152" cy="155" r="2.5"/><circle cx="160" cy="152" r="2.5"/><circle cx="168" cy="155" r="2.5"/>
+        <ellipse cx="270" cy="130" rx="10" ry="9"/><circle cx="261" cy="118" r="3"/><circle cx="270" cy="115" r="3"/><circle cx="279" cy="118" r="3"/>
+        <ellipse cx="390" cy="55"  rx="8" ry="7"/><circle cx="382" cy="45"  r="2.5"/><circle cx="390" cy="42"  r="2.5"/><circle cx="398" cy="45"  r="2.5"/>
+        <ellipse cx="480" cy="145" rx="6" ry="5"/><circle cx="474" cy="137" r="2"/><circle cx="480" cy="135" r="2"/><circle cx="486" cy="137" r="2"/>
+      </g>
+
+      <!-- inline legend -->
+      <text x="80"  y="15" font-family="'Rye','Courier New',monospace" font-size="11" fill="#8b2f1a">bison</text>
+      <text x="160" y="15" font-family="'Rye','Courier New',monospace" font-size="11" fill="#c8841e">deer</text>
+      <text x="230" y="15" font-family="'Finger Paint',cursive" font-size="10" fill="#d9cca7">dot size = count in group</text>
+    </svg>
+  </div>
+</div>
+</body></html>

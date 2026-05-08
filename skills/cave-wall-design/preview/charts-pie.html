@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Chart — stone-disk pie</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<link rel="stylesheet" href="../assets/diagrams.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:300px;padding:26px 30px;position:relative;box-sizing:border-box;}
+  .cv-wall{position:absolute;inset:0;}
+  .stage{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:32px;}
+  .legend{display:flex;flex-direction:column;gap:8px;}
+  .chip{display:inline-block;font-family:'Rye','Courier New',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border:2px solid rgba(60,30,10,.5);filter:url(#rough);}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <radialGradient id="cv-stone-disk" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#efe3c7"/>
+      <stop offset="70%" stop-color="#c8841e"/>
+      <stop offset="100%" stop-color="#6b4a2e"/>
+    </radialGradient>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <div class="stage">
+    <!-- stone disk pie — 4 wedges hand-computed (cx=110,cy=110,r=90) -->
+    <!-- wedge paths use: M cx,cy L startX,startY A r,r 0 largeArc,1 endX,endY Z -->
+    <!-- proportions: bison 40% (144°), deer 30% (108°), horse 20% (72°), elk 10% (36°) -->
+    <svg width="220" height="220" viewBox="0 0 220 220">
+      <!-- stone base disk -->
+      <circle cx="110" cy="110" r="90" fill="url(#cv-stone-disk)" stroke="#1a120a" stroke-width="3" filter="url(#rough)"/>
+
+      <!-- wedge 1: bison 40% — 0° to 144° -->
+      <!-- start: (200,110), end of 144°: cx+r*cos(144°)=110+90*cos(144°)≈110-72.8=37.2, cy+r*sin(144°)=110+90*sin(144°)≈110+52.9=162.9 -->
+      <path d="M110,110 L200,110 A90,90 0 0,1 37.2,162.9 Z" fill="#8b2f1a" mix-blend-mode="multiply" opacity=".82" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+
+      <!-- wedge 2: deer 30% — 144° to 252° -->
+      <!-- end of 252°: cx+r*cos(252°)≈110+90*(-0.309)=82.2, cy+r*sin(252°)≈110+90*(-0.951)=24.4 -->
+      <path d="M110,110 L37.2,162.9 A90,90 0 0,1 82.2,24.4 Z" fill="#c8841e" mix-blend-mode="multiply" opacity=".82" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+
+      <!-- wedge 3: horse 20% — 252° to 324° -->
+      <!-- end of 324°: cx+r*cos(324°)≈110+90*(0.809)=182.8, cy+r*sin(324°)≈110+90*(-0.588)=57.1 -->
+      <path d="M110,110 L82.2,24.4 A90,90 0 0,1 182.8,57.1 Z" fill="#1a120a" mix-blend-mode="multiply" opacity=".7" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+
+      <!-- wedge 4: elk 10% — 324° to 360° -->
+      <path d="M110,110 L182.8,57.1 A90,90 0 0,1 200,110 Z" fill="#efe3c7" mix-blend-mode="multiply" opacity=".65" stroke="#1a120a" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+    </svg>
+
+    <!-- inline legend chips -->
+    <div class="legend">
+      <div class="chip" style="background:#8b2f1a;color:#efe3c7;">bison — 40</div>
+      <div class="chip" style="background:#c8841e;color:#1a120a;">deer — 30</div>
+      <div class="chip" style="background:#1a120a;color:#efe3c7;">horse — 20</div>
+      <div class="chip" style="background:#efe3c7;color:#1a120a;">elk — 10</div>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html data-theme="cueva"><head><meta charset="utf-8"/><title>Wall background</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link rel="stylesheet" href="../themes/cueva.css"/>
+<link rel="stylesheet" href="../themes/luminoso.css"/>
+<link rel="stylesheet" href="../themes/moderno.css"/>
+<link rel="stylesheet" href="../assets/cave-wall.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--stone-1);}
+  .wrap{width:700px;height:320px;position:relative;}
+  .cv-wall{position:absolute;inset:0;}
+  .label{position:absolute;left:20px;bottom:16px;font-family:var(--font-stamp);font-size:12px;letter-spacing:.1em;color:var(--bone);text-transform:uppercase;z-index:2;background:rgba(26,18,10,.6);padding:6px 10px;border:1px solid rgba(239,227,199,.4);}
+  .hand{position:absolute;z-index:1;}
+</style></head>
+<body>
+<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:4px;"><button onclick="document.documentElement.setAttribute('data-theme','cueva')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#3b2a1b;color:#efe3c7;border:1px solid #8b2f1a;">cueva</button><button onclick="document.documentElement.setAttribute('data-theme','luminoso')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#e0c898;color:#1a120a;border:1px solid #b03820;">luminoso</button><button onclick="document.documentElement.setAttribute('data-theme','moderno')" style="font-family:monospace;font-size:10px;padding:3px 8px;cursor:pointer;background:#f4efe6;color:#18120a;border:1px solid #b89050;">moderno</button></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  <symbol id="pg-hand" viewBox="0 0 160 200"><path d="M45,185 C40,160 38,130 42,110 C32,100 28,85 32,72 C36,62 46,62 52,72 L58,95 L60,50 C62,38 76,36 80,48 L82,95 L90,35 C92,22 106,22 108,36 L108,95 L116,55 C118,42 132,44 132,58 L128,110 C132,130 130,160 124,185 Z" fill="currentColor" filter="url(#rough)"/></symbol>
+</defs></svg>
+<div class="wrap">
+  <div class="cv-wall"></div>
+  <svg class="hand" style="left:60px;top:40px;color:var(--ochre-red);opacity:.85" width="80" height="100"><use href="#pg-hand"/></svg>
+  <svg class="hand" style="right:60px;top:70px;color:var(--ochre-red);opacity:.65" width="64" height="80"><use href="#pg-hand"/></svg>
+  <svg class="hand" style="right:180px;top:160px;color:var(--ochre-red);opacity:.55" width="50" height="64"><use href="#pg-hand"/></svg>
+  <div class="label">.cv-wall — rock + noise + vignette</div>
+</div>
+</body></html>

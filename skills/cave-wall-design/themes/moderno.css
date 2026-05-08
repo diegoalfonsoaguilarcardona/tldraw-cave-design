@@ -1,0 +1,285 @@
+/* Cave Wall Design System — Moderno theme
+   Same pigment family, same marks — reframed on a clean lit surface.
+   Geometric type, warm amber dot grid, no displacement, crisp shadows.
+   Hopeful and technological: the marks of the cave translated into silicon. */
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;0,800;0,900;1,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap');
+
+:root[data-theme="moderno"] {
+  /* Stone palette — warm white, almost flat, subtle amber warmth */
+  --stone-0: #e2d8cc;    /* warm light shadow */
+  --stone-1: #f4efe6;    /* warm off-white (main bg) */
+  --stone-2: #faf7f2;    /* near-white (lightest) */
+  --stone-3: #d0c4b0;    /* warm mid-gray */
+  --stone-4: #b89050;    /* amber stone face (gradient accent) */
+  --stone-5: #50341a;    /* deep warm brown */
+
+  /* Pigments — same ochre family, slightly more saturated and vivid */
+  --ochre-red:       #be3e1c;    /* brighter terracotta */
+  --ochre-deep:      #8b2f1a;    /* anchored dark variant */
+  --ochre-yellow:    #c88c00;    /* pure golden amber */
+  --ochre-yellow-lt: #e8a200;    /* bright gold highlight */
+  --charcoal:        #18120a;    /* near-black warm */
+  --bone:            #efe8d8;    /* kept — warm white */
+  --bone-dim:        #c4b49a;    /* warm light gray */
+  --ember:           #ff7030;    /* bright ember */
+
+  /* Semantic — dark text on light stone */
+  --bg:     var(--stone-1);
+  --fg:     var(--charcoal);
+  --fg-dim: var(--stone-5);
+  --accent:   var(--ochre-red);
+  --accent-2: var(--ochre-yellow);
+  --ink:      var(--charcoal);
+
+  /* Fonts — geometric, futuristic, precise */
+  --font-painted: 'Exo 2', 'Impact', sans-serif;
+  --font-scrawl:  'DM Sans', system-ui, sans-serif;
+  --font-stamp:   'Space Mono', 'Courier New', monospace;
+
+  /* Panel — white card, clean elevation */
+  --parchment-light: #ffffff;
+  --parchment-mid:   #f8f4ef;
+  --parchment-dark:  #ede6dc;
+  --parchment-fg:    var(--charcoal);
+
+  /* Shadows — material-style, no warm inset */
+  --shadow-warm:  rgba(60,40,18,.10);
+  --border-warm:  rgba(60,40,18,.16);
+  --shadow-panel: 0 4px 28px rgba(0,0,0,.10), 0 0 0 1px rgba(60,40,18,.12);
+
+  /* Text shadows — removed for clean geometric type */
+  --shadow-painted:    none;
+  --shadow-painted-sm: none;
+
+  /* Atmosphere — imperceptible glow, no vignette, no ember corners */
+  --wall-glow-color:    rgba(180,140,60,.05);
+  --wall-vignette:      rgba(0,0,0,.00);
+  --wall-vignette-deep: rgba(0,0,0,.02);
+  --wall-ember-a:       rgba(0,0,0,.00);
+  --wall-ember-b:       rgba(0,0,0,.00);
+
+  /* Chip — faint amber tint over clean surface */
+  --chip-bg: rgba(184,144,80,.16);
+}
+
+/* ---- Background: warm amber dot grid replaces rock noise ---- */
+/* The grid carries the ochre pigment identity in a geometric form */
+:root[data-theme="moderno"] .cv-wall::before {
+  background-image: radial-gradient(circle, rgba(140,100,40,.28) 1.5px, transparent 1.5px);
+  background-size: 38px 38px;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+/* No vignette — full open light */
+:root[data-theme="moderno"] .cv-wall::after {
+  background: none;
+}
+
+/* ---- Remove displacement from all CV components ---- */
+/* Pictograph paths retain their rough-filter character; UI scaffolding is clean */
+:root[data-theme="moderno"] .cv-parchment,
+:root[data-theme="moderno"] .cv-btn,
+:root[data-theme="moderno"] .cv-chip-box,
+:root[data-theme="moderno"] .cv-stamp,
+:root[data-theme="moderno"] .cv-node,
+:root[data-theme="moderno"] .cv-node--parchment,
+:root[data-theme="moderno"] .cv-painted { filter: none; }
+
+/* ---- Title classes — bold weight for geometric font ---- */
+:root[data-theme="moderno"] .cv-title-hero,
+:root[data-theme="moderno"] .h1,
+:root[data-theme="moderno"] .cv-title,
+:root[data-theme="moderno"] .h2,
+:root[data-theme="moderno"] .cv-title-sm,
+:root[data-theme="moderno"] .h3 {
+  font-weight: 900;
+  letter-spacing: .03em;
+  filter: none;
+}
+
+/* ---- Body — medium weight for DM Sans readability ---- */
+:root[data-theme="moderno"] .cv-body,
+:root[data-theme="moderno"] .p,
+:root[data-theme="moderno"] .cv-body-lg,
+:root[data-theme="moderno"] .cv-subtitle { font-weight: 500; }
+
+/* ---- Labels/chips — tighter tracking on monospace ---- */
+:root[data-theme="moderno"] .cv-label,
+:root[data-theme="moderno"] .cv-chip { letter-spacing: .10em; }
+
+/* ---- Parchment — 1px border instead of 3px for modern refinement ---- */
+:root[data-theme="moderno"] .cv-parchment { border-width: 1px; }
+
+/* ---- Buttons — thinner border, wider tracking ---- */
+:root[data-theme="moderno"] .cv-btn {
+  border-width: 2px;
+  letter-spacing: .14em;
+}
+
+/* ---- Chips — lighter border ---- */
+:root[data-theme="moderno"] .cv-chip-box { border-width: 1px; }
+
+/* ---- Diagram labels — Space Mono with wider tracking ---- */
+:root[data-theme="moderno"] .cv-axis-label { letter-spacing: .10em; }
+
+/* ================================================================
+   DIAGRAMS & CHARTS — moderno overrides
+   Philosophy: precision over texture. Clean 1-2px lines, flat fills,
+   material box-shadows on nodes, no displacement anywhere.
+   ================================================================ */
+
+/* ---- Nodes ---- */
+
+:root[data-theme="moderno"] .cv-node {
+  border-width: 1.5px;
+  border-color: var(--border-warm);
+  background: var(--stone-2);  /* near-white fill instead of transparent */
+  color: var(--fg);
+  font-family: var(--font-scrawl);
+  font-weight: 500;
+  filter: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07), 0 0 0 1px var(--border-warm);
+}
+
+:root[data-theme="moderno"] .cv-node--parchment {
+  background: #ffffff;
+  border-color: var(--border-warm);
+  border-width: 1px;
+  box-shadow: var(--shadow-panel);
+  color: var(--parchment-fg);
+}
+
+:root[data-theme="moderno"] .cv-node--red {
+  border-color: var(--ochre-red);
+  border-width: 2px;
+  background: rgba(190,62,28,.06);
+  color: var(--ochre-red);
+  box-shadow: 0 2px 10px rgba(190,62,28,.12), 0 0 0 1px var(--ochre-red);
+}
+
+:root[data-theme="moderno"] .cv-node--circle {
+  background: radial-gradient(circle at 35% 30%, var(--stone-2), var(--ochre-yellow-lt) 70%, var(--stone-4));
+  border-color: var(--charcoal);
+  border-width: 1.5px;
+  color: var(--charcoal);
+  box-shadow: 0 2px 12px rgba(0,0,0,.10);
+}
+
+/* ---- SVG edges ---- */
+
+:root[data-theme="moderno"] .cv-edge {
+  stroke-width: 2;
+  stroke-linecap: square;  /* crisp termination, not round */
+  filter: none;
+}
+
+:root[data-theme="moderno"] .cv-edge--dashed {
+  stroke-dasharray: 8 6;  /* more regular than cueva */
+}
+
+/* ---- Chart bars ---- */
+
+:root[data-theme="moderno"] .cv-bar {
+  filter: none;
+  stroke-width: 1;
+  stroke: var(--ochre-deep);
+}
+
+/* "bone" bars are light in cueva (on dark bg) — in moderno use warm gray for contrast */
+:root[data-theme="moderno"] .cv-bar--bone {
+  fill: var(--stone-3);
+  stroke: var(--stone-4);
+}
+
+/* dark bars use stone-0 stroke in cueva; in moderno use border-warm */
+:root[data-theme="moderno"] .cv-bar--dark {
+  fill: var(--charcoal);
+  stroke: rgba(0,0,0,.0);  /* no outline on near-black bar */
+}
+
+/* ---- Chart axes ---- */
+
+:root[data-theme="moderno"] .cv-axis {
+  stroke-width: 1.5;
+  stroke-linecap: square;  /* precise corners */
+  filter: none;
+}
+
+:root[data-theme="moderno"] .cv-tick {
+  stroke-width: 1;
+  stroke-linecap: square;
+}
+
+:root[data-theme="moderno"] .cv-axis-title {
+  font-family: var(--font-stamp);  /* Space Mono for axis titles too */
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* ---- Stone-disk pie → clean white disk ---- */
+
+:root[data-theme="moderno"] .cv-pie {
+  filter: none;
+}
+
+/* Override the SVG gradient fill with a clean white base */
+:root[data-theme="moderno"] .cv-pie__disk {
+  fill: #ffffff;
+  stroke: var(--border-warm);
+  stroke-width: 1.5;
+}
+
+:root[data-theme="moderno"] .cv-pie__wedge {
+  stroke: #ffffff;        /* crisp white divider instead of charcoal */
+  stroke-width: 2;
+  opacity: .88;
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="moderno"] .cv-pie__crack {
+  stroke: var(--border-warm);
+  stroke-width: 1.5;
+}
+
+/* ---- Scatter dots ---- */
+
+:root[data-theme="moderno"] .cv-scatter-dot {
+  filter: none;
+  stroke: none;
+}
+
+/* In moderno, accent-variant dots use the brighter golden */
+:root[data-theme="moderno"] .cv-scatter-dot--accent {
+  fill: var(--ochre-yellow-lt);
+}
+
+/* "bone" dots would be invisible on light bg — use stone-3 instead */
+:root[data-theme="moderno"] .cv-scatter-dot--bone {
+  fill: var(--stone-3);
+}
+
+/* ---- Trail / line chart ---- */
+
+:root[data-theme="moderno"] .cv-trail {
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  filter: none;
+}
+
+:root[data-theme="moderno"] .cv-trail-dot {
+  filter: none;
+}
+
+:root[data-theme="moderno"] .cv-trail-area {
+  filter: none;
+  opacity: .08;
+}
+
+/* bone trail invisible on light bg — use stone-3 */
+:root[data-theme="moderno"] .cv-trail--bone   { stroke: var(--stone-3); }
+:root[data-theme="moderno"] .cv-trail-dot--bone { fill: var(--stone-3); }
+:root[data-theme="moderno"] .cv-trail-area--bone { fill: var(--stone-3); }
