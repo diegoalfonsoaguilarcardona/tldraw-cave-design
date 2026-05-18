@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 import {
 	DEFAULT_THEME,
 	TLDefaultColor,
@@ -8,6 +8,9 @@ import {
 	TLUiOverrides,
 	Tldraw,
 	toRichText,
+	useEditor,
+	getSnapshot,
+	loadSnapshot,
 } from 'tldraw'
 import 'tldraw/tldraw.css'
 import './cave-wall-theme.css'
@@ -159,6 +162,83 @@ const uiOverrides: TLUiOverrides = {
 	},
 }
 
+// [SavePanel] Save/load the drawing as a local JSON file.
+function SavePanel() {
+	const editor = useEditor()
+	const inputRef = useRef<HTMLInputElement>(null)
+
+	function handleSave() {
+		const snapshot = getSnapshot(editor.store)
+		const blob = new Blob([JSON.stringify(snapshot)], { type: 'application/json' })
+		const url = URL.createObjectURL(blob)
+		const a = document.createElement('a')
+		a.href = url
+		a.download = 'cave-drawing.json'
+		document.body.appendChild(a)
+		a.click()
+		document.body.removeChild(a)
+		setTimeout(() => URL.revokeObjectURL(url), 100)
+	}
+
+	function handleLoad(e: React.ChangeEvent<HTMLInputElement>) {
+		const file = e.target.files?.[0]
+		if (!file) return
+		const reader = new FileReader()
+		reader.onload = (ev) => {
+			try {
+				const snapshot = JSON.parse(ev.target?.result as string)
+				loadSnapshot(editor.store, snapshot)
+			} catch {
+				// invalid file, ignore
+			}
+		}
+		reader.readAsText(file)
+		e.target.value = ''
+	}
+
+	return (
+		<div style={{ display: 'flex', gap: 6, padding: '0 8px', pointerEvents: 'all' }}>
+			<button
+				onClick={handleSave}
+				style={{
+					background: '#8b2f1a',
+					color: '#efe3c7',
+					border: 'none',
+					borderRadius: 6,
+					padding: '4px 12px',
+					cursor: 'pointer',
+					fontFamily: "'Rye', serif",
+					fontSize: 13,
+				}}
+			>
+				Save
+			</button>
+			<button
+				onClick={() => inputRef.current?.click()}
+				style={{
+					background: '#3b2a1b',
+					color: '#efe3c7',
+					border: '1px solid #8b2f1a',
+					borderRadius: 6,
+					padding: '4px 12px',
+					cursor: 'pointer',
+					fontFamily: "'Rye', serif",
+					fontSize: 13,
+				}}
+			>
+				Open
+			</button>
+			<input
+				ref={inputRef}
+				type="file"
+				accept=".json"
+				style={{ display: 'none' }}
+				onChange={handleLoad}
+			/>
+		</div>
+	)
+}
+
 export default function CaveWallThemeExample() {
 	// [7] Build the cave theme: same earth palette for both light and dark
 	// since the cave has no day/night mode.
@@ -185,6 +265,7 @@ export default function CaveWallThemeExample() {
 				persistenceKey="cave-wall-theme-example"
 				themes={themes}
 				overrides={uiOverrides}
+				components={{ SharePanel: SavePanel }}
 				onMount={(editor) => {
 					// [8] Seed shapes on first visit to demonstrate the palette.
 					if (editor.getCurrentPageShapeIds().size > 0) return
